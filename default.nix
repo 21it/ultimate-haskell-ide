@@ -3,24 +3,21 @@ with pkgs;
 
 vim_configurable.customize {
   name = "vi";
+  #
+  # TODO : how to use current package directories here?
+  #
   vimrcConfig.customRC = ''
-  let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
+  set runtimepath+=~/.vim_runtime
 
-  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
-  map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-  map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-  map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-  map <Leader>lb :call LanguageClient#textDocument_references()<CR>
-  map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-  map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+  source ~/.vim_runtime/vimrcs/basic.vim
+  source ~/.vim_runtime/vimrcs/filetypes.vim
+  source ~/.vim_runtime/vimrcs/plugins_config.vim
+  source ~/.vim_runtime/vimrcs/extended.vim
 
-  hi link ALEError Error
-  hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
-  hi link ALEWarning Warning
-  hi link ALEInfo SpellCap
-
-  let g:LanguageClient_rootMarkers = ['*.cabal', 'stack.yaml']
+  try
+  source ~/.vim_runtime/my_configs.vim
+  catch
+  endtry
   '';
   vimrcConfig.packages.itkachuk = with vimPlugins; {
     # loaded on launch
