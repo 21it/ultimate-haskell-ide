@@ -5,6 +5,6 @@ let pkg = import ./. {};
 in
 
 stdenv.mkDerivation {
-  name = "itkachuk-vim";
+  name = "vimrc-awesome-shell";
   buildInputs = [ pkg ];
 }

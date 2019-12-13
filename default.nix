@@ -1,25 +1,47 @@
 { pkgs ? import <nixpkgs> {} }:
 with pkgs;
 
+let ignore-patterns = ''
+      .git
+      .gitignore
+      *.nix
+      *.sh
+      *.md
+      *.py
+      LICENSE
+    '';
+    vimrc-awesome = stdenv.mkDerivation {
+      name = "vimrc-awesome";
+      src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
+      dontBuild = true;
+      installPhase = ''
+        echo "QWE $out"
+        mkdir -p $out/
+        cp -R ./ $out/
+      '';
+    };
+
+in
+
 vim_configurable.customize {
   name = "vi";
   #
   # TODO : how to use current package directories here?
   #
   vimrcConfig.customRC = ''
-  set runtimepath+=~/.vim_runtime
+  set runtimepath+=${vimrc-awesome}
 
-  source ~/.vim_runtime/vimrcs/basic.vim
-  source ~/.vim_runtime/vimrcs/filetypes.vim
-  source ~/.vim_runtime/vimrcs/plugins_config.vim
-  source ~/.vim_runtime/vimrcs/extended.vim
+  source ${vimrc-awesome}/vimrcs/basic.vim
+  source ${vimrc-awesome}/vimrcs/filetypes.vim
+  source ${vimrc-awesome}/vimrcs/plugins_config.vim
+  source ${vimrc-awesome}/vimrcs/extended.vim
 
   try
-  source ~/.vim_runtime/my_configs.vim
+  source ${vimrc-awesome}/my_configs.vim
   catch
   endtry
   '';
-  vimrcConfig.packages.itkachuk = with vimPlugins; {
+  vimrcConfig.packages.vimrc-awesome = with vimPlugins; {
     # loaded on launch
     start = [ haskell-vim vim-hindent LanguageClient-neovim ];
     # manually loadable by calling `:packadd $plugin-name`
