@@ -9,6 +9,7 @@ let ignore-patterns = ''
       *.md
       *.py
       LICENSE
+      result
     '';
     vimrc-awesome = stdenv.mkDerivation {
       name = "vimrc-awesome";
