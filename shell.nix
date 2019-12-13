@@ -6,5 +6,5 @@ in
 
 stdenv.mkDerivation {
   name = "vimrc-awesome-shell";
-  buildInputs = [ pkg ];
+  buildInputs = [ pkg git ];
 }
