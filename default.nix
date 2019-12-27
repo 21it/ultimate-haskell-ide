@@ -16,7 +16,6 @@ let ignore-patterns = ''
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
       dontBuild = true;
       installPhase = ''
-        echo "QWE $out"
         mkdir -p $out/
         cp -R ./ $out/
       '';
@@ -26,9 +25,6 @@ in
 
 vim_configurable.customize {
   name = "vi";
-  #
-  # TODO : how to use current package directories here?
-  #
   vimrcConfig.customRC = ''
   set runtimepath+=${vimrc-awesome}
 
@@ -44,7 +40,7 @@ vim_configurable.customize {
   '';
   vimrcConfig.packages.vimrc-awesome = with vimPlugins; {
     # loaded on launch
-    start = [ haskell-vim vim-hindent LanguageClient-neovim ];
+    start = [];
     # manually loadable by calling `:packadd $plugin-name`
     opt = [];
     # To automatically load a plugin when opening a filetype, add vimrc lines like:
