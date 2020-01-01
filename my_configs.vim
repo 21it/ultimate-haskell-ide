@@ -1,7 +1,7 @@
 syntax on
 filetype plugin indent on
 colorscheme jellybeans
-call ale#toggle#Disable()
+autocmd VimEnter * :ALEDisable
 
 "
 " CoC configs
