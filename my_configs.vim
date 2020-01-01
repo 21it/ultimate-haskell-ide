@@ -1,6 +1,7 @@
 syntax on
 filetype plugin indent on
 colorscheme jellybeans
+ALEDisable
 
 "
 " CoC configs
