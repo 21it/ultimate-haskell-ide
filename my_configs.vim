@@ -2,6 +2,8 @@ syntax on
 filetype plugin indent on
 colorscheme jellybeans
 autocmd VimEnter * :ALEDisable
+nnoremap <silent> <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
 
 "
 " CoC configs
