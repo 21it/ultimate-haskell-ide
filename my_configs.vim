@@ -4,6 +4,7 @@ colorscheme jellybeans
 autocmd VimEnter * :ALEDisable
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+set splitright
 
 "
 " CoC configs
