@@ -143,4 +143,4 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " fix jump forward
 "
 
-nnoremap <C-p> <C-i>
+nnoremap <C-I> <C-i>
