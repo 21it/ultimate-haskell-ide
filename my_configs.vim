@@ -2,6 +2,7 @@ syntax on
 filetype plugin indent on
 colorscheme jellybeans
 autocmd VimEnter * :ALEDisable
+autocmd VimEnter * :HindentDisable
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 set splitright
