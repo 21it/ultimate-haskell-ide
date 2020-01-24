@@ -6,6 +6,8 @@ let g:hindent_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 set splitright
+set expandtab
+set shiftwidth=2
 
 "
 " CoC configs
