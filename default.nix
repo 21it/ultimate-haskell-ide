@@ -15,7 +15,6 @@ let ignore-patterns = ''
       name = "vimrc-awesome";
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
       dontBuild = true;
-      propagatedBuildInputs = [ag];
       installPhase = ''
         mkdir -p $out/
         cp -R ./ $out/
@@ -28,7 +27,7 @@ vim_configurable.customize {
   name = "vi";
   vimrcConfig.customRC = ''
   set runtimepath+=${vimrc-awesome}
-  set runtimepath+=${ag}
+  let $PATH.=':${ag}/bin'
 
   source ${vimrc-awesome}/vimrcs/basic.vim
   source ${vimrc-awesome}/vimrcs/filetypes.vim
