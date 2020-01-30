@@ -11,6 +11,15 @@ let ignore-patterns = ''
       LICENSE
       result
     '';
+    all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/archive/4b984030c8080d944372354a7b558c49858057e7.tar.gz") {};
+    hie = all-hies.unstable.selection { selector = p: { inherit (p) ghc865; }; };
+    ghc = haskellPackages.ghcWithPackages (hpkgs: with hpkgs;
+      [
+        stack
+        cabal-install
+        zlib
+      ]
+    );
     vimrc-awesome = stdenv.mkDerivation {
       name = "vimrc-awesome";
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
@@ -52,14 +61,23 @@ in
     dontBuild = true;
     dontInstall = true;
     propagatedBuildInputs = [
+      /* Vim + plugins */
       vimrc-awesome'
       nodejs
+      /* Haskell tools */
+      ghc
+      hie
       haskellPackages.ormolu
       haskellPackages.brittany
       haskellPackages.hindent
       haskellPackages.hlint
       haskellPackages.hoogle
       haskellPackages.apply-refact
+      /* Other */
+      nix
+      git
+      curl
+      less
     ];
   }
 
