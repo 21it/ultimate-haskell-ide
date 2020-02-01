@@ -8,6 +8,11 @@ nnoremap <esc>^[ <esc>^[
 set splitright
 set expandtab
 set shiftwidth=2
+let vim_markdown_preview_toggle=1
+let vim_markdown_preview_hotkey='<C-p>'
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_temp_file=1
+let vim_markdown_preview_github=1
 
 "
 " CoC configs
