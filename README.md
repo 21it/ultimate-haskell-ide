@@ -22,14 +22,8 @@
 
 ### With Nix
 
-Local
 ```nix
 import (fetchTarball "https://github.com/tim2CF/vimrc/tarball/master") {}
-```
-
-Global
-```bash
-nix-env -i -f https://github.com/tim2CF/vimrc/archive/master.tar.gz
 ```
 
 ### Without Nix (not recommended)
