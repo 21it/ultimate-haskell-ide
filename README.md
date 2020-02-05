@@ -16,20 +16,26 @@
 
 - Compiler and linter suggestions
 
-- Embedded Hoogle docs
+- Hoogle docs
+
+- Beginner friendly
 
 # Installation
 
 ### With Nix
 
+#### Note: to make installation process much faster, make sure you are using [cachix](https://all-hies.cachix.org/).
+
 ```nix
-import (fetchTarball "https://github.com/tim2CF/vimrc/tarball/master") {}
+import (fetchTarball "https://github.com/tim2CF/ultimate-haskell-ide/tarball/master") {}
 ```
 
 ### Without Nix (not recommended)
 
+#### Warning: to use this package without Nix, you have to install all binary dependencies manually. Look [default.nix](https://github.com/tim2CF/ultimate-haskell-ide/blob/master/default.nix) file for complete list of dependencies.
+
 ```bash
-git clone --depth=1 https://github.com/tim2CF/vimrc.git ~/.vim_runtime
+git clone --depth=1 https://github.com/tim2CF/ultimate-haskell-ide.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 ```
 
