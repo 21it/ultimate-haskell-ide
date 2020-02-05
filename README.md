@@ -14,7 +14,7 @@
 
 - Jump to definition
 
-- Compiler suggestions
+- Compiler and linter suggestions
 
 - Embedded Hoogle docs
 
@@ -39,16 +39,17 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 vi .
 ```
 
-# Useful commands
+# Some commands
 
 This IDE is based on normal Vim. It should support all the most standard Vim commands and shortcuts. Nevertheless, this bundle includes a lot of plugins and configs which might add new commands or override some standard bindings. If you already completed **vimtutor** and know basics, you almost ready to use Vim as your main text editor. Here I'll put some commands which probably have own equivalens in most of other IDEs. Most of the given commands should be executed in **normal** mode.
 
 | Command | Description |
 |:--------|:------------|
 | **Esc** | Enter normal mode and remove highlighting of search matches. |
+| **:w** | Apply code formatter and save the file. |
 | **Ctrl-f** | Fuzzy finder of files in current project. |
-| **Ctrl-o** | Jump to previous opened buffer (similar to browser tab history). |
-| **Ctrl-Shift-i** | Jump to next opened buffer (similar to browser tab history). |
+| **Ctrl-o** | Jump to previous opened buffer (similar to browser tab history movements). |
+| **Ctrl-Shift-i** | Jump to next opened buffer (similar to browser tab history movements). |
 | **Ctrl-p** | If current buffer is markdown document - render HTML and show it in Google Chrome. If browser already have opened markdown preview tab - refresh content. 
 | **:Ack HelloWorld** | Global search of text in files of current project. |
 | **:e ./src/Foo.hs** | Edit file in current buffer. |
@@ -57,11 +58,22 @@ This IDE is based on normal Vim. It should support all the most standard Vim com
 | **:term** | Split screen horizontally and open new terminal session. |
 | **:vert term** | Split screen vertically and open new terminal session. |
 | **Ctrl-w Shift-n** | Switch from **terminal** insert mode to normal (to scroll, copy text etc). To switch back to **terminal** insert mode just press **i**. |
-| **Ctrl-w Ctrl-w** | Switch to next split window clockwise. |
-| **Ctrl-w h** | |
-| **Ctrl-w j** | |
-| **Ctrl-w k** | |
-| **Ctrl-w l** | Switch to next split window in given direction. |
+| **Ctrl-w Ctrl-w** | Focus on next split window clockwise. |
+| **Ctrl-w h** | Focus on next split window in given direction (left). |
+| **Ctrl-w j** | Focus on next split window in given direction (down). |
+| **Ctrl-w k** | Focus on next split window in given direction (up). |
+| **Ctrl-w l** | Focus on next split window in given direction (right). |
+| **gt** | Focus on next tab. |
+| **:tabclose** | Close current tab. |
+| **:tabonly** | Close all tabs except current. |
+| **gd** | Jump to expression definition. |
+| **Shift-k** | Show expression type and documentation. |
+| **to** | Apply refactoring according one hint at cursor position. |
+| **ta** | Apply all refactoring suggestions in current buffer. |
+
+# Known issues
+
+HIE (Haskell IDE engine) in some cases requires some time to start and warm-up. It depends on project size, but usually this startup delay appears in projects with **custom-setup** directive. Anyway, after HIE is started, all IDE features like linter suggestions, jump to definition, auto-completion, auto-refactoring and documentation should work instantly.
 
 <br>
 <p align="center">
