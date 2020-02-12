@@ -68,8 +68,8 @@ in
       ghc
       hie
       haskellPackages.ormolu
-      haskellPackages.brittany
-      haskellPackages.hindent
+      #haskellPackages.brittany
+      #haskellPackages.hindent
       haskellPackages.hlint
       haskellPackages.hoogle
       haskellPackages.apply-refact
