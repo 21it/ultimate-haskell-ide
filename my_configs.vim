@@ -3,6 +3,7 @@ filetype plugin indent on
 colorscheme jellybeans
 autocmd VimEnter * :ALEDisable
 let g:hindent_on_save = 0
+let g:brittany_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 set splitright
