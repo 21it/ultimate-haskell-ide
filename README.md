@@ -58,7 +58,7 @@ This IDE is based on normal Vim. It should support all the most standard Vim com
 | **Ctrl-f** | Fuzzy finder of files in current project. |
 | **Ctrl-o** | Jump to previous opened buffer (similar to browser tab history movements). |
 | **Ctrl-Shift-i** | Jump to next opened buffer (similar to browser tab history movements). |
-| **Ctrl-p** | If current buffer is markdown document - render HTML and show it in Google Chrome. If browser already have opened markdown preview tab - refresh content. 
+| **Ctrl-p** | If current buffer is markdown document - render HTML and show it in Google Chrome. If browser already have opened markdown preview tab - refresh content.
 | **:Ack HelloWorld** | Global search of text in files of current project. |
 | **:e ./src/Foo.hs** | Edit file in current buffer. |
 | **:sp ./src/Foo.hs** | Split screen horizontally and edit file in new buffer. |
