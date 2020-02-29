@@ -2,6 +2,8 @@
 
 <img src="logo.png" alt="logo" width="350"/>
 
+If you have no idea what is Nix derivation, where and how you can use this package, or you just want to try it out somewhere very quickly - that's completely fine. Just check out [ez-haskell-nix](https://github.com/tim2CF/ez-haskell-nix/) repo first.
+
 # Features
 
 - Syntax highlighting
@@ -79,7 +81,9 @@ This IDE is based on normal Vim. It should support all the most standard Vim com
 
 # Known issues
 
-HIE (Haskell IDE engine) in some cases requires some time to start and warm-up. It depends on project size, but usually this startup delay appears in projects with **custom-setup** directive. Anyway, after HIE is started, all IDE features like linter suggestions, jump to definition, auto-completion, auto-refactoring and documentation should work instantly.
+- I tested this derivation only on x86-64 Alpine Linux. Anyway, Nix derivation usually is very portable thing and theoretically should work everywhere.
+
+- HIE (Haskell IDE engine) in some cases requires some time to start and warm-up. It depends on project size, but usually this startup delay appears in projects with **custom-setup** directive. Anyway, after HIE is started, all IDE features like linter suggestions, jump to definition, auto-completion, auto-refactoring and documentation should work instantly.
 
 <br>
 <p align="center">
