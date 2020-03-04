@@ -66,11 +66,11 @@ This IDE is based on normal Vim. It should support all the most standard Vim com
 | **:term** | Split screen horizontally and open new terminal session. |
 | **:vert term** | Split screen vertically and open new terminal session. |
 | **Ctrl-w Shift-n** | Switch from **terminal** insert mode to normal (to scroll, copy text etc). To switch back to **terminal** insert mode just press **i**. |
-| **Ctrl-w Ctrl-w** | Focus on next split window clockwise. |
-| **Ctrl-w h** | Focus on next split window in given direction (left). |
-| **Ctrl-w j** | Focus on next split window in given direction (down). |
-| **Ctrl-w k** | Focus on next split window in given direction (up). |
-| **Ctrl-w l** | Focus on next split window in given direction (right). |
+| **Ctrl-ww** | Focus on next split window clockwise. |
+| **Ctrl-wh** | Focus on next split window in given direction (left). |
+| **Ctrl-wj** | Focus on next split window in given direction (down). |
+| **Ctrl-wk** | Focus on next split window in given direction (up). |
+| **Ctrl-wl** | Focus on next split window in given direction (right). |
 | **gt** | Focus on next tab. |
 | **:tabclose** | Close current tab. |
 | **:tabonly** | Close all tabs except current. |
