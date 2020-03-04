@@ -21,6 +21,8 @@ let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf',
 let g:gitgutter_enabled = 1
 let g:AutoPairsFlyMode = 0
 let g:AutoPairs = {}
+nnoremap <c-h> :SidewaysLeft<cr>
+nnoremap <c-l> :SidewaysRight<cr>
 
 let g:multi_cursor_use_default_mapping=0
 " Default mapping
