@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
+let overlays = [(import ./overlay.nix)];
+in
+{ pkgs ? import <nixpkgs> {inherit overlays;} }:
 with pkgs;
 
 let ignore-patterns = ''
@@ -74,6 +76,7 @@ in
       haskellPackages.hoogle
       haskellPackages.apply-refact
       /* Other */
+      ag
       nix
       git
       curl

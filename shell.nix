@@ -6,6 +6,6 @@ in
 
 stdenv.mkDerivation {
   name = "vimrc-awesome-shell";
-  buildInputs = [ pkg git ag nodejs ];
+  buildInputs = [ pkg ];
   TERM="xterm-256color";
 }
