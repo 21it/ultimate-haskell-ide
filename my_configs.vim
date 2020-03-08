@@ -25,6 +25,7 @@ nnoremap <c-h> :SidewaysLeft<cr>
 nnoremap <c-l> :SidewaysRight<cr>
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
+nnoremap <c-a> *``
 
 let g:multi_cursor_use_default_mapping=0
 " Default mapping
