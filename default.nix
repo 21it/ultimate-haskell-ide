@@ -1,6 +1,7 @@
-let overlays = [(import ./overlay.nix)];
-in
-{ pkgs ? import <nixpkgs> {inherit overlays;} }:
+{
+  pkgs ? import <nixpkgs> {},
+  ormolu ? null
+}:
 with pkgs;
 
 let ignore-patterns = ''
@@ -22,6 +23,7 @@ let ignore-patterns = ''
         zlib
       ]
     );
+    ormoluDerivation = if ormolu == null then haskellPackages.ormolu else ormolu;
     vimrc-awesome = stdenv.mkDerivation {
       name = "vimrc-awesome";
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
@@ -69,9 +71,7 @@ in
       /* Haskell tools */
       ghc
       hie
-      haskellPackages.ormolu
-      #haskellPackages.brittany
-      #haskellPackages.hindent
+      ormoluDerivation
       haskellPackages.hlint
       haskellPackages.hoogle
       haskellPackages.apply-refact
