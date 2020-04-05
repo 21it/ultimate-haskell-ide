@@ -1,6 +1,9 @@
+let nixpkgs19 = import ./nixpkgs19.nix;
+    nixpkgs20 = import ./nixpkgs20.nix;
+in
 {
-  pkgs ? import <nixpkgs> {},
-  ormolu ? null
+  pkgs ? import nixpkgs19 {},
+  ormolu ? (import nixpkgs20 {}).haskellPackages.ormolu
 }:
 with pkgs;
 
