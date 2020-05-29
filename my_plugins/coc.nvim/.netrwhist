@@ -1,2 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/timcf/MYprojects/lightning-tip/templates'
+let g:netrw_dirhist_0='/Users/timcf/HTprojects/pay88-animex/src/Pay88/Resolver'
+let g:netrw_dirhist_9='/Users/timcf/HTprojects/pay88-animex/src/Pay88'
+let g:netrw_dirhist_8='/Users/timcf/HTprojects/pay88-animex/src'
+let g:netrw_dirhist_7='/Users/timcf/HTprojects/pay88-animex/src/Animex'
+let g:netrw_dirhist_6='/Users/timcf/HTprojects/pay88-animex/src/Pay88/Resolver'
+let g:netrw_dirhist_5='/Users/timcf/HTprojects/pay88-animex/src/Pay88'
+let g:netrw_dirhist_4='/Users/timcf/HTprojects/pay88-animex/src'
+let g:netrw_dirhist_3='/Users/timcf/HTprojects/pay88-animex/src/Pay88Animex'
+let g:netrw_dirhist_2='/Users/timcf/HTprojects/pay88-animex/src/Pay88Animex/Data'

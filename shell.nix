@@ -1,4 +1,8 @@
-{ pkgs ? import <nixpkgs> {} }:
+let nixpkgs19 = import ./nixpkgs19.nix;
+in
+{
+  pkgs ? import nixpkgs19 {}
+}:
 with pkgs;
 
 let pkg = import ./. {};

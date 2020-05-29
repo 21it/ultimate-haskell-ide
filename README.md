@@ -2,7 +2,7 @@
 
 <img src="logo.png" alt="logo" width="350"/>
 
-If you have no idea what is Nix derivation, where and how you can use this package, or you just want to try it out somewhere very quickly - that's completely fine. Just check out [ez-haskell-nix](https://github.com/tim2CF/ez-haskell-nix/) repo first.
+If you have no idea what is Nix derivation, where and how you can use this package, or you just want to try it out somewhere very quickly - that's completely fine. Just check out [tkachuk-labs/stack-templates](https://github.com/tkachuk-labs/stack-templates) repo first.
 
 # Features
 

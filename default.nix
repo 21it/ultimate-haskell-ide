@@ -1,6 +1,10 @@
-let overlays = [(import ./overlay.nix)];
+let nixpkgs19 = import ./nixpkgs19.nix;
+    nixpkgs20 = import ./nixpkgs20.nix;
 in
-{ pkgs ? import <nixpkgs> {inherit overlays;} }:
+{
+  pkgs ? import nixpkgs19 {},
+  ormolu ? (import nixpkgs20 {}).haskellPackages.ormolu
+}:
 with pkgs;
 
 let ignore-patterns = ''
@@ -22,6 +26,7 @@ let ignore-patterns = ''
         zlib
       ]
     );
+    ormoluDerivation = if ormolu == null then haskellPackages.ormolu else ormolu;
     vimrc-awesome = stdenv.mkDerivation {
       name = "vimrc-awesome";
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
@@ -69,9 +74,7 @@ in
       /* Haskell tools */
       ghc
       hie
-      haskellPackages.ormolu
-      #haskellPackages.brittany
-      #haskellPackages.hindent
+      ormoluDerivation
       haskellPackages.hlint
       haskellPackages.hoogle
       haskellPackages.apply-refact
