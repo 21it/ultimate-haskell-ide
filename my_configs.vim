@@ -1,5 +1,7 @@
 syntax on
 filetype plugin indent on
+set t_Co=256
+set background=dark
 colorscheme jellybeans
 autocmd VimEnter * :ALEDisable
 let g:hindent_on_save = 0
@@ -176,3 +178,17 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "
 
 nnoremap <C-I> <C-i>
+
+if exists("*ToggleBackground") == 0
+	function ToggleBackground()
+		if &background == "dark"
+            set background=light
+            colorscheme PaperColor
+		else
+            set background=dark
+            colorscheme jellybeans
+		endif
+	endfunction
+
+	command BG call ToggleBackground()
+endif

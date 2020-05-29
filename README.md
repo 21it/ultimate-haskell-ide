@@ -54,6 +54,7 @@ This IDE is based on normal Vim. It should support all the most standard Vim com
 | Command | Description |
 |:--------|:------------|
 | **Esc** | Enter normal mode and remove highlighting of search matches. |
+| **:BG** | Toggle dark/light color theme. |
 | **:w** | Apply code formatter and save the file. |
 | **Ctrl-f** | Fuzzy finder of files in current project. |
 | **Ctrl-o** | Jump to previous opened buffer (similar to browser tab history movements). |
