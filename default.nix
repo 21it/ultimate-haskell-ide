@@ -1,9 +1,13 @@
-let nixpkgs19 = import ./nixpkgs19.nix;
-    nixpkgs20 = import ./nixpkgs20.nix;
+let nixpkgs19src = import ./nixpkgs19.nix;
+    nixpkgs20src = import ./nixpkgs20.nix;
+    nixpkgsMasterSrc = import ./nixpkgs-master.nix;
+    nixpkgs19 = import nixpkgs19src {};
+    nixpkgs20 = import nixpkgs20src {};
+    nixpkgsMaster = import nixpkgsMasterSrc {};
 in
 {
-  pkgs ? import nixpkgs19 {},
-  ormolu ? (import nixpkgs20 {}).haskellPackages.ormolu
+  pkgs ? nixpkgs19,
+  ormolu ? nixpkgs20.haskellPackages.ormolu
 }:
 with pkgs;
 
@@ -21,7 +25,7 @@ let ignore-patterns = ''
     hie = all-hies.unstable.selection { selector = p: { inherit (p) ghc865; }; };
     ghc = haskellPackages.ghcWithPackages (hpkgs: with hpkgs;
       [
-        stack
+        nixpkgsMaster.haskellPackages.stack
         cabal-install
         zlib
       ]
