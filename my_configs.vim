@@ -1,8 +1,8 @@
 syntax on
 filetype plugin indent on
 set t_Co=256
-set background=light
-colorscheme PaperColor
+exe 'set background=' . get(g:, "vimBackground", "light")
+exe 'colorscheme ' . get(g:, "vimColorScheme", "PaperColor")
 autocmd VimEnter * :ALEDisable
 let g:hindent_on_save = 0
 let g:brittany_on_save = 0
