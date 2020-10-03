@@ -7,7 +7,9 @@ let nixpkgs19src = import ./nixpkgs19.nix;
 in
 {
   pkgs ? nixpkgs19,
-  ormolu ? nixpkgs20.haskellPackages.ormolu
+  ormolu ? nixpkgs20.haskellPackages.ormolu,
+  vimBackground ? "light",
+  vimColorScheme ? "PaperColor"
 }:
 with pkgs;
 
@@ -50,6 +52,14 @@ let ignore-patterns = ''
       source ${vimrc-awesome}/vimrcs/filetypes.vim
       source ${vimrc-awesome}/vimrcs/plugins_config.vim
       source ${vimrc-awesome}/vimrcs/extended.vim
+
+      if !exists("g:vimBackground")
+        let g:vimBackground = '${vimBackground}'
+      endif
+
+      if !exists("g:vimColorScheme")
+        let g:vimColorScheme = '${vimColorScheme}'
+      endif
 
       try
       source ${vimrc-awesome}/my_configs.vim
