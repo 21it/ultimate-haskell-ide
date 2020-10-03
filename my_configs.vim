@@ -8,12 +8,14 @@ let g:hindent_on_save = 0
 let g:brittany_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+nnoremap <SPACE> <Nop>
+let mapleader = " "
 set splitright
 set expandtab
 set shiftwidth=2
 let vim_markdown_preview_toggle=1
 let vim_markdown_preview_hotkey='<C-p>'
-let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_browser='Tor Browser'
 let vim_markdown_preview_temp_file=1
 let vim_markdown_preview_github=1
 let g:better_whitespace_enabled=1
@@ -192,3 +194,10 @@ if exists("*ToggleBackground") == 0
 
 	command BG call ToggleBackground()
 endif
+
+"
+" Jump between virtual lines in soft-wrapping mode
+"
+
+nmap <C-j> gj
+nmap <C-k> gk
