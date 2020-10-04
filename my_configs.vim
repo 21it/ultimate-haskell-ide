@@ -9,7 +9,7 @@ let g:brittany_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 nnoremap <SPACE> <Nop>
-let mapleader = " "
+let mapleader = ","
 set splitright
 set expandtab
 set shiftwidth=2
