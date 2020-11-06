@@ -42,7 +42,7 @@ let ignore-patterns = ''
         cp -R ./ $out/
       '';
     };
-    vimrc-awesome' = vim_configurable.customize {
+    vimrc-awesome' = nixpkgs20.vim_configurable.customize {
       name = "vi";
       vimrcConfig.customRC = ''
       set runtimepath+=${vimrc-awesome}
