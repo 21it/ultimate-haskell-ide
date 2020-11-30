@@ -92,6 +92,9 @@ in
       haskellPackages.hlint
       haskellPackages.hoogle
       haskellPackages.apply-refact
+      /* DHall */
+      dhall
+      dhall-json
       /* Other */
       ag
       nix

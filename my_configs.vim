@@ -221,3 +221,24 @@ let g:netrw_liststyle = 3
 "let g:netrw_browse_split = 4
 "let g:netrw_altv = 1
 "let g:netrw_winsize = 25
+
+"
+" dhall
+"
+
+let g:LanguageClient_serverCommands = {
+    \ 'dhall': ['dhall-lsp-server'],
+    \ }
+
+" comment the next line to disable automatic format on save
+let g:dhall_format=1
+
+" Always draw sign column. Prevent buffer moving when adding/deleting sign.
+set signcolumn=yes
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+" Map keybinding
+"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
