@@ -9,5 +9,6 @@ docker run -it --rm \
   -w "/app" nixos/nix:2.3 sh -c "
   nix-env -iA cachix -f https://cachix.org/api/v1/install &&
   cachix use all-hies &&
+  cachix use dhall &&
   nix-shell --pure
   "
