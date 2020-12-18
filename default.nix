@@ -7,9 +7,10 @@ let nixpkgs19src = import ./nixpkgs19.nix;
 in
 {
   pkgs ? nixpkgs19,
+  deps ? null,
   ormolu ? nixpkgs20.haskellPackages.ormolu,
   vimBackground ? "light",
-  vimColorScheme ? "PaperColor"
+  vimColorScheme ? "PaperColor",
 }:
 with pkgs;
 
@@ -75,6 +76,21 @@ let ignore-patterns = ''
         # autocmd FileType php :packadd phpCompletion
       };
     };
+    deps' =
+      if deps != null
+      then deps
+      else [
+        /* Haskell tools */
+        ghc
+        hie
+        ormoluDerivation
+        haskellPackages.hlint
+        haskellPackages.hoogle
+        haskellPackages.apply-refact
+        /* DHall */
+        nixpkgsMaster.dhall
+        nixpkgsMaster.dhall-json
+      ];
 in
   stdenv.mkDerivation{
     name = "vi";
@@ -85,22 +101,12 @@ in
       /* Vim + plugins */
       vimrc-awesome'
       nodejs
-      /* Haskell tools */
-      ghc
-      hie
-      ormoluDerivation
-      haskellPackages.hlint
-      haskellPackages.hoogle
-      haskellPackages.apply-refact
-      /* DHall */
-      nixpkgsMaster.dhall
-      nixpkgsMaster.dhall-json
       /* Other */
       ag
       nix
       git
       curl
       less
-    ];
+    ] ++ deps';
   }
 
