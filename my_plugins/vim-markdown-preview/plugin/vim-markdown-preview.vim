@@ -105,7 +105,7 @@ function! Vim_Markdown_Preview()
   endif
 
   if g:vim_markdown_preview_temp_file == 1
-    sleep 200m
+    sleep 1000m
     call system('rm /tmp/vim-markdown-preview.html')
   endif
 endfunction
@@ -129,7 +129,7 @@ function! Vim_Markdown_Preview_Local()
   endif
 
   if g:vmp_osname == 'unix'
-    let chrome_wid = system("xdotool search --name vim-markdown-preview.html - " . g:vim_markdown_preview_browser . "'")
+    let chrome_wid = system("xdotool search --name 'vim-markdown-preview.html - " . g:vim_markdown_preview_browser . "'")
     if !chrome_wid
       if g:vim_markdown_preview_use_xdg_open == 1
         call system('xdg-open vim-markdown-preview.html 1>/dev/null 2>/dev/null &')
@@ -159,7 +159,7 @@ function! Vim_Markdown_Preview_Local()
   endif
 
   if g:vim_markdown_preview_temp_file == 1
-    sleep 200m
+    sleep 1000m
     call system('rm vim-markdown-preview.html')
   endif
 endfunction

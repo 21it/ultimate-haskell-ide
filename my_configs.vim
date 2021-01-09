@@ -17,9 +17,10 @@ set expandtab
 set shiftwidth=2
 let vim_markdown_preview_toggle=1
 let vim_markdown_preview_hotkey='<C-p>'
-let vim_markdown_preview_browser='Tor Browser'
+let vim_markdown_preview_browser='Firefox'
 let vim_markdown_preview_temp_file=1
 let vim_markdown_preview_github=1
+let vim_markdown_preview_use_xdg_open=1
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
