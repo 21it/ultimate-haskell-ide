@@ -5,6 +5,7 @@ exe 'set background=' . get(g:, "vimBackground", "light")
 exe 'colorscheme ' . get(g:, "vimColorScheme", "PaperColor")
 exe 'let g:languagetool_jar=' . get(g:, "languagetool_jar", "$LANGUAGE_TOOL_JAR")
 let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
+let g:coc_global_extensions = ['coc-metals']
 autocmd VimEnter * :ALEDisable
 let g:hindent_on_save = 0
 let g:brittany_on_save = 0
