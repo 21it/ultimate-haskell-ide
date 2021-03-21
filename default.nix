@@ -101,7 +101,6 @@ in
       /* Vim + plugins */
       vimrc-awesome'
       nodejs
-      figlet
       /* Other */
       ag
       nix

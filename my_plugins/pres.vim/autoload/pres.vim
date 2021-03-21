@@ -5,20 +5,20 @@
 function! s:setupTab(filename) abort "{{{
 	let l:pres_name = s:fnameToPresName(a:filename)
 
-	call execute("silent tabedit " . l:pres_name)
+	call execute("silent sp " . l:pres_name)
 	setlocal ft=markdown
 	setlocal noswapfile
 	setlocal buftype=nofile
 	setlocal bufhidden=hide
-	setlocal nonumber
-	setlocal norelativenumber
-	setlocal colorcolumn=
-	setlocal signcolumn=no
-	setlocal laststatus=0
-	setlocal noruler
-	setlocal shortmess=
-	setlocal nohlsearch
-	setlocal nolist
+	"setlocal nonumber
+	"setlocal norelativenumber
+	"setlocal colorcolumn=
+	"setlocal signcolumn=no
+	"setlocal laststatus=0
+	"setlocal noruler
+	"setlocal shortmess=
+	"setlocal nohlsearch
+	"setlocal nolist
 
 	let w:pres_name = l:pres_name
 	let w:slides = s:parse(a:filename)
@@ -34,7 +34,7 @@ function! s:buildContent(slide, pres_name, index, total, win_height) abort "{{{
 	endfor
 
 	" First line is the header
-	call insert(l:content, strftime("VimConf.Live %Y"))
+	call insert(l:content, strftime("Tkachuk Labs Podcast %Y-%m-%d"))
 
 	let l:padding_len = a:win_height - len(l:content)
 
@@ -115,7 +115,7 @@ function! pres#start(filename) abort "{{{
 	let w:index = 0
 
 	nnoremap <silent> <buffer> <Leader>n :call pres#next()<CR>
-	nnoremap <silent> <buffer> <Leader>p :call pres#prev()<CR>
+	nnoremap <silent> <buffer> <Leader>b :call pres#prev()<CR>
 	command! -buffer -nargs=1 PresGoto call pres#goto(<f-args>)
 	command! -buffer -nargs=0 PresReload call s:showSlide(w:index)
 
