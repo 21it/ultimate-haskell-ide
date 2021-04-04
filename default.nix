@@ -4,17 +4,24 @@ let nixpkgs19src = import ./nixpkgs19.nix;
     nixpkgs19 = import nixpkgs19src {};
     nixpkgs20 = import nixpkgs20src {};
     nixpkgsMaster = import nixpkgsMasterSrc {};
+    mavenix = import (fetchTarball "https://github.com/nix-community/mavenix/tarball/7416dbd2861520d44a4d6ecee9d94f89737412dc") {};
+    all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/archive/4b984030c8080d944372354a7b558c49858057e7.tar.gz") {};
 in
 {
   pkgs ? nixpkgs19,
-  deps ? null,
-  ormolu ? nixpkgs20.haskellPackages.ormolu,
+  bundle ? "haskell",
   vimBackground ? "light",
   vimColorScheme ? "PaperColor",
 }:
 with pkgs;
+with builtins;
+with lib.lists;
 
-let ignore-patterns = ''
+let bundles =
+      if isList bundle
+      then bundle
+      else singleton bundle;
+    ignore-patterns = ''
       .git
       .gitignore
       *.nix
@@ -24,7 +31,6 @@ let ignore-patterns = ''
       LICENSE
       result
     '';
-    all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/archive/4b984030c8080d944372354a7b558c49858057e7.tar.gz") {};
     hie = all-hies.unstable.selection { selector = p: { inherit (p) ghc865; }; };
     ghc = haskellPackages.ghcWithPackages (hpkgs: with hpkgs;
       [
@@ -33,7 +39,6 @@ let ignore-patterns = ''
         zlib
       ]
     );
-    ormoluDerivation = if ormolu == null then haskellPackages.ormolu else ormolu;
     vimrc-awesome = stdenv.mkDerivation {
       name = "vimrc-awesome";
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
@@ -67,30 +72,34 @@ let ignore-patterns = ''
       catch
       endtry
       '';
-      vimrcConfig.packages.vimrc-awesome = with vimPlugins; {
-        # loaded on launch
-        start = [];
-        # manually loadable by calling `:packadd $plugin-name`
-        opt = [];
-        # To automatically load a plugin when opening a filetype, add vimrc lines like:
-        # autocmd FileType php :packadd phpCompletion
-      };
     };
-    deps' =
-      if deps != null
-      then deps
-      else [
-        /* Haskell tools */
+    bundle-registry = {
+      minimal = [
+
+      ];
+      haskell = [
         ghc
         hie
-        ormoluDerivation
+        cabal2nix
         haskellPackages.hlint
         haskellPackages.hoogle
         haskellPackages.apply-refact
-        /* DHall */
+        nixpkgs20.haskellPackages.ormolu
+      ];
+      dhall = [
         nixpkgsMaster.dhall
         nixpkgsMaster.dhall-json
       ];
+      maven = [
+        jdk11
+        maven
+        mavenix.cli
+      ];
+      elixir = [
+        elixir
+        inotify-tools
+      ];
+    };
 in
   stdenv.mkDerivation{
     name = "vi";
@@ -98,15 +107,15 @@ in
     dontBuild = true;
     dontInstall = true;
     propagatedBuildInputs = [
-      /* Vim + plugins */
+      /* vim + coc */
       vimrc-awesome'
       nodejs
-      /* Other */
+      /* other */
       ag
       nix
       git
       curl
       less
-    ] ++ deps';
+    ] ++ (concatMap (x: getAttr x bundle-registry) bundles);
   }
 
