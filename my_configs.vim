@@ -1,7 +1,18 @@
+" Better infix functions in Haskell
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \       'override' : {
+  \         'color10' : ['#d70087', '162']
+  \       }
+  \     }
+  \   }
+  \ }
+
 syntax on
 filetype plugin indent on
 set t_Co=256
-exe 'set background=' . get(g:, "vimBackground", "light")
+exe 'set background=' . get(g:, "vimBackground", "dark")
 exe 'colorscheme ' . get(g:, "vimColorScheme", "PaperColor")
 exe 'let g:languagetool_jar=' . get(g:, "languagetool_jar", "$LANGUAGE_TOOL_JAR")
 let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"

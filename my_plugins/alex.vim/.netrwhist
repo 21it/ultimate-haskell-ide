@@ -1,1 +1,12 @@
 let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/x/.vim_runtime/my_plugins/papercolor-theme/colors'
+let g:netrw_dirhist_6='/home/x/.vim_runtime/my_plugins/papercolor-theme'
+let g:netrw_dirhist_5='/home/x/.vim_runtime/my_plugins'
+let g:netrw_dirhist_4='/home/x/.vim_runtime'
+let g:netrw_dirhist_3='/home/x/.vim_runtime/my_plugins'
+let g:netrw_dirhist_2='/home/x/.vim_runtime/my_plugins/papercolor-theme'
+let g:netrw_dirhist_1='/home/x/.vim_runtime/my_plugins/papercolor-theme/colors'
+let g:netrw_dirhist_0='/home/x/.vim_runtime/my_plugins/papercolor-theme'
+let g:netrw_dirhist_9='/home/x/HTprojects/coins-agent'
+let g:netrw_dirhist_8='/home/x/HTprojects/coins-agent/app'
