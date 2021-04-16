@@ -3,7 +3,8 @@ let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default.dark': {
   \       'override' : {
-  \         'color10' : ['#d70087', '162']
+  \       'color10' : ['#d70087', '162'],
+  \       'color13' : ['#d75f00', '166'],
   \       }
   \     }
   \   }
