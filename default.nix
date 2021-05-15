@@ -84,6 +84,7 @@ let bundles =
         haskellPackages.hlint
         haskellPackages.hoogle
         haskellPackages.apply-refact
+        haskellPackages.hspec-discover
         nixpkgs20.haskellPackages.ormolu
       ];
       dhall = [
