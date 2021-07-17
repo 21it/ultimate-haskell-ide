@@ -34,7 +34,8 @@ function! s:buildContent(slide, pres_name, index, total, win_height) abort "{{{
 	endfor
 
 	" First line is the header
-	call insert(l:content, strftime("Tkachuk Labs Podcast %Y-%m-%d"))
+	"call insert(l:content, strftime("Tkachuk Labs Podcast %Y-%m-%d"))
+	call insert(l:content, "")
 
 	let l:padding_len = a:win_height - len(l:content)
 
@@ -42,7 +43,9 @@ function! s:buildContent(slide, pres_name, index, total, win_height) abort "{{{
 		call add(l:content, '')
 	endfor
 
-	call add(l:content, printf("%s [ %d / %d ]", a:pres_name, a:index + 1, a:total))
+	call add(l:content,
+          \ strftime("*%Y-%m-%d")
+          \ . printf(" %s [ %d / %d ]*", a:pres_name, a:index + 1, a:total))
 
 	return l:content
 endfunction "}}}
