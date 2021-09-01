@@ -36,7 +36,7 @@ let bundles =
     hie = all-hies.unstable.selection { selector = p: { inherit (p) ghc865; }; };
     ghc = haskellPackages.ghcWithPackages (hpkgs: with hpkgs;
       [
-        nixpkgs21.haskellPackages.stack
+        nixpkgsMaster.haskellPackages.stack
         cabal-install
         zlib
       ]
