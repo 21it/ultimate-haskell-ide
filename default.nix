@@ -12,7 +12,8 @@ in
 {
   pkgs ? nixpkgs19,
   bundle ? "haskell",
-  vimBackground ? "light",
+  withGit ? true,
+  vimBackground ? "dark",
   vimColorScheme ? "PaperColor",
 }:
 with pkgs;
@@ -23,6 +24,10 @@ let bundles =
       if isList bundle
       then bundle
       else singleton bundle;
+    gitDerivations =
+      if withGit
+      then [git]
+      else [];
     ignore-patterns = ''
       .git
       .gitignore
@@ -116,9 +121,8 @@ in
       /* other */
       ag
       nix
-      git
       curl
       less
-    ] ++ (concatMap (x: getAttr x bundle-registry) bundles);
+    ] ++ gitDerivations ++ (concatMap (x: getAttr x bundle-registry) bundles);
   }
 
