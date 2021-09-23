@@ -1,16 +1,16 @@
-let nixpkgs19src = import ./nixpkgs19.nix;
-    nixpkgs20src = import ./nixpkgs20.nix;
-    nixpkgs21src = import ./nixpkgs20.nix;
+let #nixpkgs19src = import ./nixpkgs19.nix;
+    #nixpkgs20src = import ./nixpkgs20.nix;
+    #nixpkgs21src = import ./nixpkgs20.nix;
     nixpkgsMasterSrc = import ./nixpkgs-master.nix;
-    nixpkgs19 = import nixpkgs19src {};
-    nixpkgs20 = import nixpkgs20src {};
-    nixpkgs21 = import nixpkgs21src {};
+    #nixpkgs19 = import nixpkgs19src {};
+    #nixpkgs20 = import nixpkgs20src {};
+    #nixpkgs21 = import nixpkgs21src {};
     nixpkgsMaster = import nixpkgsMasterSrc {};
     mavenix = import (fetchTarball "https://github.com/nix-community/mavenix/tarball/7416dbd2861520d44a4d6ecee9d94f89737412dc") {};
     all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/archive/4b984030c8080d944372354a7b558c49858057e7.tar.gz") {};
 in
 {
-  pkgs ? nixpkgs19,
+  pkgs ? nixpkgsMaster,
   bundle ? "haskell",
   withGit ? true,
   vimBackground ? "dark",
@@ -39,13 +39,6 @@ let bundles =
       result
     '';
     hie = all-hies.unstable.selection { selector = p: { inherit (p) ghc865; }; };
-    ghc = haskellPackages.ghcWithPackages (hpkgs: with hpkgs;
-      [
-        nixpkgsMaster.haskellPackages.stack
-        cabal-install
-        zlib
-      ]
-    );
     vimrc-awesome = stdenv.mkDerivation {
       name = "vimrc-awesome";
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
@@ -85,15 +78,18 @@ let bundles =
 
       ];
       haskell = [
-        ghc
+        haskell.compiler.ghc901
+        haskellPackages.stack
+        cabal-install
+        zlib
         hie
         cabal2nix
-        nixpkgs21.ghcid
+        ghcid
         haskellPackages.hlint
         haskellPackages.hoogle
         haskellPackages.apply-refact
         haskellPackages.hspec-discover
-        nixpkgs20.haskellPackages.ormolu
+        haskellPackages.ormolu
       ];
       dhall = [
         nixpkgsMaster.dhall
