@@ -82,6 +82,7 @@ let bundles =
         haskellPackages.stack
         cabal-install
         zlib
+        haskell-language-server
         hie
         cabal2nix
         ghcid
