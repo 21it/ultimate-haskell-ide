@@ -7,6 +7,7 @@ in
   pkgs ? nixpkgsMaster,
   bundle ? "haskell",
   withGit ? true,
+  formatter ? "ormolu",
   vimBackground ? "dark",
   vimColorScheme ? "PaperColor",
 }:
@@ -41,9 +42,54 @@ let bundles =
         cp -R ./ $out/
       '';
     };
+    formatter-registry = {
+      ormolu = ''
+      let g:brittany_on_save = 0
+      let g:ormolu_disable = 0
+      '';
+      brittany = ''
+      let g:brittany_on_save = 1
+      let g:ormolu_disable = 1
+      '';
+    };
+    bundle-registry = {
+      minimal = [
+
+      ];
+      haskell = [
+        haskell.compiler.ghc901
+        haskellPackages.stack
+        cabal-install
+        zlib
+        haskell-language-server
+        cabal2nix
+        ghcid
+        haskellPackages.hlint
+        haskellPackages.hoogle
+        haskellPackages.apply-refact
+        haskellPackages.hspec-discover
+        haskellPackages.implicit-hie
+        haskellPackages.ormolu
+        haskellPackages.brittany
+      ];
+      dhall = [
+        nixpkgsMaster.dhall
+        nixpkgsMaster.dhall-json
+      ];
+      maven = [
+        jdk11
+        maven
+        mavenix.cli
+      ];
+      elixir = [
+        elixir
+        inotify-tools
+      ];
+    };
     vimrc-awesome' = nixpkgsMaster.vim_configurable.customize {
       name = "vi";
       vimrcConfig.customRC = ''
+
       set runtimepath+=${vimrc-awesome}
       let $PATH.=':${ag}/bin'
 
@@ -64,39 +110,8 @@ let bundles =
       source ${vimrc-awesome}/my_configs.vim
       catch
       endtry
-      '';
-    };
-    bundle-registry = {
-      minimal = [
 
-      ];
-      haskell = [
-        haskell.compiler.ghc901
-        haskellPackages.stack
-        cabal-install
-        zlib
-        haskell-language-server
-        cabal2nix
-        ghcid
-        haskellPackages.hlint
-        haskellPackages.hoogle
-        haskellPackages.apply-refact
-        haskellPackages.hspec-discover
-        haskellPackages.ormolu
-      ];
-      dhall = [
-        nixpkgsMaster.dhall
-        nixpkgsMaster.dhall-json
-      ];
-      maven = [
-        jdk11
-        maven
-        mavenix.cli
-      ];
-      elixir = [
-        elixir
-        inotify-tools
-      ];
+      '' ++ (getAttr formatter formatter-registry);
     };
 in
   stdenv.mkDerivation{
