@@ -111,7 +111,7 @@ let bundles =
       catch
       endtry
 
-      '' ++ (getAttr formatter formatter-registry);
+      '' + (getAttr formatter formatter-registry);
     };
 in
   stdenv.mkDerivation{
