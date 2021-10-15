@@ -20,7 +20,7 @@ let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
 let g:coc_global_extensions = ['coc-metals']
 autocmd VimEnter * :ALEDisable
 autocmd VimEnter * :vert term
-autocmd VimEnter * :wincmd p
+autocmd VimEnter * :vert resize -14
 let g:hindent_on_save = 0
 let g:brittany_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
