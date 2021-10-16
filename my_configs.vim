@@ -21,6 +21,7 @@ let g:coc_global_extensions = ['coc-metals']
 autocmd VimEnter * :ALEDisable
 autocmd VimEnter * :vert term
 autocmd VimEnter * :vert resize -14
+set colorcolumn=67
 let g:hindent_on_save = 0
 let g:brittany_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
