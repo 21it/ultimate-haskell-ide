@@ -88,6 +88,7 @@ let bundles =
         ghc
         hie
         cabal2nix
+        nixpkgs21.ghcid
         haskellPackages.hlint
         haskellPackages.hoogle
         haskellPackages.apply-refact
