@@ -92,7 +92,7 @@ let bundles =
         haskellPackages.hoogle
         haskellPackages.apply-refact
         haskellPackages.hspec-discover
-        nixpkgs20.haskellPackages.ormolu
+        nixpkgs21.haskellPackages.ormolu
       ];
       dhall = [
         nixpkgsMaster.dhall
