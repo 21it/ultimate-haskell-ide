@@ -1,6 +1,6 @@
 let nixpkgs19src = import ./nixpkgs19.nix;
     nixpkgs20src = import ./nixpkgs20.nix;
-    nixpkgs21src = import ./nixpkgs20.nix;
+    nixpkgs21src = import ./nixpkgs21.nix;
     nixpkgsMasterSrc = import ./nixpkgs-master.nix;
     nixpkgs19 = import nixpkgs19src {};
     nixpkgs20 = import nixpkgs20src {};
