@@ -13,6 +13,7 @@ in
   pkgs ? nixpkgs19,
   bundle ? "haskell",
   withGit ? true,
+  formatter ? "ormolu",
   vimBackground ? "dark",
   vimColorScheme ? "PaperColor",
 }:
@@ -46,6 +47,20 @@ let bundles =
         zlib
       ]
     );
+    formatter-registry = {
+      ormolu = ''
+      let g:brittany_on_save = 0
+      let g:ormolu_disable = 0
+      '';
+      brittany = ''
+      let g:brittany_on_save = 1
+      let g:ormolu_disable = 1
+      '';
+      none = ''
+      let g:brittany_on_save = 0
+      let g:ormolu_disable = 1
+      '';
+    };
     vimrc-awesome = stdenv.mkDerivation {
       name = "vimrc-awesome";
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
@@ -58,6 +73,7 @@ let bundles =
     vimrc-awesome' = nixpkgsMaster.vim_configurable.customize {
       name = "vi";
       vimrcConfig.customRC = ''
+
       set runtimepath+=${vimrc-awesome}
       let $PATH.=':${ag}/bin'
 
@@ -78,7 +94,8 @@ let bundles =
       source ${vimrc-awesome}/my_configs.vim
       catch
       endtry
-      '';
+
+      '' + (getAttr formatter formatter-registry);
     };
     bundle-registry = {
       minimal = [
