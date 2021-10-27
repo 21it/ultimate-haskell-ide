@@ -94,6 +94,7 @@ let bundles =
         haskellPackages.apply-refact
         haskellPackages.hspec-discover
         nixpkgs21.haskellPackages.ormolu
+        nixpkgs21.haskellPackages.implicit-hie
       ];
       dhall = [
         nixpkgsMaster.dhall
