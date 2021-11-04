@@ -10,7 +10,8 @@ in
   formatter ? "ormolu",
   vimBackground ? "dark",
   vimColorScheme ? "PaperColor",
-  extraBuildInputs ? []
+  # optional tool replacement
+  cabal-install ? pkgs.cabal-install
 }:
 with pkgs;
 with builtins;
@@ -131,7 +132,6 @@ in
       less
     ]
     ++ gitDerivations
-    ++ (concatMap (x: getAttr x bundle-registry) bundles)
-    ++ extraBuildInputs;
+    ++ (concatMap (x: getAttr x bundle-registry) bundles);
   }
 
