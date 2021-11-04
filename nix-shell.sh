@@ -5,7 +5,7 @@ set -e
 docker run -it --rm \
   -v "$(pwd):/app" \
   -v "nix:/nix" \
-  -w "/app" nixos/nix:2.3 \
+  -w "/app" nixos/nix:2.3.12 \
   nix-shell \
     --pure \
     --option extra-substituters "https://cache.nixos.org https://hydra.iohk.io https://all-hies.cachix.org" \

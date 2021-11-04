@@ -10,6 +10,7 @@ in
   formatter ? "ormolu",
   vimBackground ? "dark",
   vimColorScheme ? "PaperColor",
+  extraBuildInputs ? []
 }:
 with pkgs;
 with builtins;
@@ -128,6 +129,9 @@ in
       nix
       curl
       less
-    ] ++ gitDerivations ++ (concatMap (x: getAttr x bundle-registry) bundles);
+    ]
+    ++ gitDerivations
+    ++ (concatMap (x: getAttr x bundle-registry) bundles)
+    ++ extraBuildInputs;
   }
 
