@@ -1,7 +1,7 @@
 let nixpkgsMasterSrc = import ./nixpkgs-master.nix;
     nixpkgsMaster = import nixpkgsMasterSrc {};
+    pkgs20 = import (import ./nixpkgs20.nix) {};
     mavenix = import (fetchTarball "https://github.com/nix-community/mavenix/tarball/7416dbd2861520d44a4d6ecee9d94f89737412dc") {};
-    all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/archive/4b984030c8080d944372354a7b558c49858057e7.tar.gz") {};
 in
 {
   pkgs ? nixpkgsMaster,
@@ -11,7 +11,7 @@ in
   vimBackground ? "dark",
   vimColorScheme ? "PaperColor",
   # optional tool replacement
-  cabal-install ? pkgs.cabal-install
+  cabal-install ? pkgs20.cabal-install
 }:
 with pkgs;
 with builtins;
