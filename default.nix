@@ -111,6 +111,7 @@ let bundles =
         haskellPackages.apply-refact
         haskellPackages.hspec-discover
         nixpkgs21.haskellPackages.ormolu
+        nixpkgs21.haskell-language-server
         nixpkgs21.haskellPackages.implicit-hie
       ];
       dhall = [
