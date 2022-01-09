@@ -5,7 +5,7 @@ set -e
 THIS_DIR="$(dirname "$(realpath "$0")")"
 VIM_BACKGROUND="${VIM_BACKGROUND:-light}"
 VIM_COLOR_SCHEME="${VIM_COLOR_SCHEME:-PaperColor}"
-USER="${USER:-haskell}"
+USER="${USER:-user}"
 NIX_CONF="http2 = false
 trusted-users = root $USER
 extra-substituters = https://cache.nixos.org https://hydra.iohk.io https://all-hies.cachix.org
