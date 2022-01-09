@@ -51,6 +51,10 @@ let bundles =
       let g:brittany_on_save = 1
       let g:ormolu_disable = 1
       '';
+      none = ''
+      let g:brittany_on_save = 0
+      let g:ormolu_disable = 1
+      '';
     };
     bundle-registry = {
       minimal = [
