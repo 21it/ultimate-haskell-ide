@@ -2,6 +2,8 @@ let nixpkgsMasterSrc = import ./nixpkgs-master.nix;
     nixpkgsMaster = import nixpkgsMasterSrc {};
     pkgs20 = import (import ./nixpkgs20.nix) {};
     mavenix = import (fetchTarball "https://github.com/nix-community/mavenix/tarball/7416dbd2861520d44a4d6ecee9d94f89737412dc") {};
+    nixToolsSrc = import (fetchTarball "https://github.com/input-output-hk/nix-tools/tarball/617b77da9ad734e7b5ee1d7f1dbb09abe924960d") {};
+    nixTools = nixToolsSrc.nix-tools.components.exes;
 in
 {
   pkgs ? nixpkgsMaster,
@@ -63,6 +65,9 @@ let bundles =
 
       ];
       haskell = [
+        nixTools.lts-to-nix
+        nixTools.stack-to-nix
+      ] ++ [
         haskell.compiler.ghc901
         haskellPackages.stack
         cabal-install

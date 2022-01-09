@@ -22,7 +22,9 @@ docker run -it --rm \
   echo \"$NIX_CONF\" >> /etc/nix/nix.conf &&
   (nix-daemon &) &&
   sleep 1 &&
-  su $USER -c \"NIX_REMOTE=daemon nix-shell ./shell.nix \
+  su $USER -c \"NIX_REMOTE=daemon \
+    nix-shell \
+    ./shell.nix \
     --pure \
     --show-trace -v \
     --arg usingDocker true \
