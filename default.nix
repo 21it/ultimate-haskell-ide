@@ -65,15 +65,13 @@ let bundles =
 
       ];
       haskell = [
-        nixTools.lts-to-nix
-        nixTools.stack-to-nix
-      ] ++ [
         haskell.compiler.ghc901
         haskellPackages.stack
         cabal-install
         zlib
         haskell-language-server
         cabal2nix
+        niv
         ghcid
         haskellPackages.hlint
         haskellPackages.hoogle
