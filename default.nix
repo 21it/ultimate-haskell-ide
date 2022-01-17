@@ -1,6 +1,7 @@
 let nixpkgsMasterSrc = import ./nixpkgs-master.nix;
     nixpkgsMaster = import nixpkgsMasterSrc {};
     pkgs20 = import (import ./nixpkgs20.nix) {};
+    pkgs21 = import (import ./nixpkgs21.nix) {};
     mavenix = import (fetchTarball "https://github.com/nix-community/mavenix/tarball/7416dbd2861520d44a4d6ecee9d94f89737412dc") {};
     nixToolsSrc = import (fetchTarball "https://github.com/input-output-hk/nix-tools/tarball/617b77da9ad734e7b5ee1d7f1dbb09abe924960d") {};
     nixTools = nixToolsSrc.nix-tools.components.exes;
@@ -66,7 +67,7 @@ let bundles =
       ];
       haskell = [
         haskell.compiler.ghc901
-        haskellPackages.stack
+        pkgs21.haskellPackages.stack
         cabal-install
         zlib
         haskell-language-server
