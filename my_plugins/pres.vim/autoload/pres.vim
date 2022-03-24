@@ -12,7 +12,7 @@ function! s:setupTab(filename) abort "{{{
 	setlocal bufhidden=hide
 	"setlocal nonumber
 	"setlocal norelativenumber
-	"setlocal colorcolumn=
+	setlocal colorcolumn=
 	"setlocal signcolumn=no
 	"setlocal laststatus=0
 	"setlocal noruler
