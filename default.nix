@@ -116,6 +116,10 @@ let bundles =
         let g:vimColorScheme = '${vimColorScheme}'
       endif
 
+      if !exists("g:languagetool_cmd")
+        let g:languagetool_cmd = '${languagetool}/bin/languagetool-commandline'
+      endif
+
       try
       source ${vimrc-awesome}/my_configs.vim
       catch
