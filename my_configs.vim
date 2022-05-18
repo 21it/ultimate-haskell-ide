@@ -314,3 +314,10 @@ function! s:WingmanUseCtor(type)
   call CocAction('codeAction', a:type, ['refactor.wingman.useConstructor'])
   call <SID>GotoNextHole()
 endfunction
+
+"
+" LanguageTool
+"
+
+nnoremap <leader>lt :LanguageToolCheck<cr>
+nnoremap <leader>lc :LanguageToolClear<cr>
