@@ -59,7 +59,7 @@ let bundles =
 
       ];
       haskell = [
-        haskell.compiler.ghc922
+        haskell.compiler.ghc902
         haskellPackages.stack
         cabal-install
         zlib
