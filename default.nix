@@ -1,21 +1,13 @@
-let nixpkgsMasterSrc = import ./nixpkgs-master.nix;
-    nixpkgsMaster = import nixpkgsMasterSrc {};
-    pkgs20 = import (import ./nixpkgs20.nix) {};
-    pkgs21 = import (import ./nixpkgs21.nix) {};
-    pkgs22 = import (import ./nixpkgs22.nix) {};
+let pkgs22 = import (import ./nixpkgs22.nix) {};
     mavenix = import (fetchTarball "https://github.com/nix-community/mavenix/tarball/7416dbd2861520d44a4d6ecee9d94f89737412dc") {};
-    nixToolsSrc = import (fetchTarball "https://github.com/input-output-hk/nix-tools/tarball/617b77da9ad734e7b5ee1d7f1dbb09abe924960d") {};
-    nixTools = nixToolsSrc.nix-tools.components.exes;
 in
 {
-  pkgs ? nixpkgsMaster,
+  pkgs ? pkgs22,
   bundle ? "haskell",
   withGit ? true,
   formatter ? "ormolu",
   vimBackground ? "dark",
-  vimColorScheme ? "PaperColor",
-  # optional tool replacement
-  cabal-install ? pkgs20.cabal-install
+  vimColorScheme ? "PaperColor"
 }:
 with pkgs;
 with builtins;
@@ -67,8 +59,8 @@ let bundles =
 
       ];
       haskell = [
-        pkgs22.haskell.compiler.ghc922
-        pkgs22.haskellPackages.stack
+        haskell.compiler.ghc922
+        haskellPackages.stack
         cabal-install
         zlib
         haskell-language-server
@@ -84,8 +76,8 @@ let bundles =
         haskellPackages.brittany
       ];
       dhall = [
-        nixpkgsMaster.dhall
-        nixpkgsMaster.dhall-json
+        dhall
+        dhall-json
       ];
       maven = [
         jdk11
@@ -97,12 +89,12 @@ let bundles =
         inotify-tools
       ];
     };
-    vimrc-awesome' = nixpkgsMaster.vim_configurable.customize {
+    vimrc-awesome' = vim_configurable.customize {
       name = "vi";
       vimrcConfig.customRC = ''
 
       set runtimepath+=${vimrc-awesome}
-      let $PATH.=':${ag}/bin'
+      let $PATH.=':${silver-searcher}/bin'
 
       source ${vimrc-awesome}/vimrcs/basic.vim
       source ${vimrc-awesome}/vimrcs/filetypes.vim
@@ -139,7 +131,6 @@ in
       vimrc-awesome'
       nodejs
       /* other */
-      ag
       nix
       curl
       less

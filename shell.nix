@@ -1,4 +1,4 @@
-let nixpkgs = import ./nixpkgs-master.nix;
+let nixpkgs = import ./nixpkgs22.nix;
 in
 {
   pkgs ? import nixpkgs {}
