@@ -326,7 +326,7 @@ nnoremap <leader>lc :LanguageToolClear<cr>
 " Resize panes
 "
 
-nnoremap <leader>= :vert resize +7<cr>
-nnoremap <leader>- :vert resize -7<cr>
-nnoremap <leader>. :resize +7<cr>
-nnoremap <leader>, :resize -7<cr>
+nnoremap <leader>, :vert resize -7<cr>
+nnoremap <leader>. :vert resize +7<cr>
+nnoremap <leader>; :resize -7<cr>
+nnoremap <leader>' :resize +7<cr>
