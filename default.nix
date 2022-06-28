@@ -1,21 +1,13 @@
-let nixpkgs19src = import ./nixpkgs19.nix;
-    nixpkgs20src = import ./nixpkgs20.nix;
-    nixpkgs21src = import ./nixpkgs21.nix;
-    nixpkgsMasterSrc = import ./nixpkgs-master.nix;
-    nixpkgs19 = import nixpkgs19src {};
-    nixpkgs20 = import nixpkgs20src {};
-    nixpkgs21 = import nixpkgs21src {};
-    nixpkgsMaster = import nixpkgsMasterSrc {};
+let pkgs22 = import (import ./nixpkgs22.nix) {};
     mavenix = import (fetchTarball "https://github.com/nix-community/mavenix/tarball/7416dbd2861520d44a4d6ecee9d94f89737412dc") {};
-    all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/archive/4b984030c8080d944372354a7b558c49858057e7.tar.gz") {};
 in
 {
-  pkgs ? nixpkgs19,
+  pkgs ? pkgs22,
   bundle ? "haskell",
   withGit ? true,
   formatter ? "ormolu",
   vimBackground ? "dark",
-  vimColorScheme ? "PaperColor",
+  vimColorScheme ? "PaperColor"
 }:
 with pkgs;
 with builtins;
@@ -39,14 +31,15 @@ let bundles =
       LICENSE
       result
     '';
-    hie = all-hies.unstable.selection { selector = p: { inherit (p) ghc865; }; };
-    ghc = haskellPackages.ghcWithPackages (hpkgs: with hpkgs;
-      [
-        nixpkgsMaster.haskellPackages.stack
-        cabal-install
-        zlib
-      ]
-    );
+    vimrc-awesome = stdenv.mkDerivation {
+      name = "vimrc-awesome";
+      src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
+      dontBuild = true;
+      installPhase = ''
+        mkdir -p $out/
+        cp -R ./ $out/
+      '';
+    };
     formatter-registry = {
       ormolu = ''
       let g:brittany_on_save = 0
@@ -61,21 +54,47 @@ let bundles =
       let g:ormolu_disable = 1
       '';
     };
-    vimrc-awesome = stdenv.mkDerivation {
-      name = "vimrc-awesome";
-      src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
-      dontBuild = true;
-      installPhase = ''
-        mkdir -p $out/
-        cp -R ./ $out/
-      '';
+    bundle-registry = {
+      minimal = [
+
+      ];
+      haskell = [
+        haskell.compiler.ghc902
+        haskellPackages.stack
+        cabal-install
+        zlib
+        haskell-language-server
+        cabal2nix
+        niv
+        ghcid
+        haskellPackages.hlint
+        haskellPackages.hoogle
+        haskellPackages.apply-refact
+        haskellPackages.hspec-discover
+        haskellPackages.implicit-hie
+        haskellPackages.ormolu
+        haskellPackages.brittany
+      ];
+      dhall = [
+        dhall
+        dhall-json
+      ];
+      maven = [
+        jdk11
+        maven
+        mavenix.cli
+      ];
+      elixir = [
+        elixir
+        inotify-tools
+      ];
     };
-    vimrc-awesome' = nixpkgsMaster.vim_configurable.customize {
+    vimrc-awesome' = vim_configurable.customize {
       name = "vi";
       vimrcConfig.customRC = ''
 
       set runtimepath+=${vimrc-awesome}
-      let $PATH.=':${ag}/bin'
+      let $PATH.=':${silver-searcher}/bin'
 
       source ${vimrc-awesome}/vimrcs/basic.vim
       source ${vimrc-awesome}/vimrcs/filetypes.vim
@@ -90,44 +109,16 @@ let bundles =
         let g:vimColorScheme = '${vimColorScheme}'
       endif
 
+      if !exists("g:languagetool_cmd")
+        let g:languagetool_cmd = '${languagetool}/bin/languagetool-commandline'
+      endif
+
       try
       source ${vimrc-awesome}/my_configs.vim
       catch
       endtry
 
       '' + (getAttr formatter formatter-registry);
-    };
-    bundle-registry = {
-      minimal = [
-
-      ];
-      haskell = [
-        ghc
-        hie
-        cabal2nix
-        nixpkgs21.niv
-        nixpkgs21.ghcid
-        haskellPackages.hlint
-        haskellPackages.hoogle
-        haskellPackages.apply-refact
-        haskellPackages.hspec-discover
-        nixpkgs21.haskellPackages.ormolu
-        nixpkgs21.haskell-language-server
-        nixpkgs21.haskellPackages.implicit-hie
-      ];
-      dhall = [
-        nixpkgsMaster.dhall
-        nixpkgsMaster.dhall-json
-      ];
-      maven = [
-        jdk11
-        maven
-        mavenix.cli
-      ];
-      elixir = [
-        elixir
-        inotify-tools
-      ];
     };
 in
   stdenv.mkDerivation{
@@ -140,10 +131,11 @@ in
       vimrc-awesome'
       nodejs
       /* other */
-      ag
       nix
       curl
       less
-    ] ++ gitDerivations ++ (concatMap (x: getAttr x bundle-registry) bundles);
+    ]
+    ++ gitDerivations
+    ++ (concatMap (x: getAttr x bundle-registry) bundles);
   }
 

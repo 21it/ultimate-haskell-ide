@@ -1,7 +1,7 @@
-let nixpkgs19 = import ./nixpkgs19.nix;
+let nixpkgs = import ./nixpkgs22.nix;
 in
 {
-  pkgs ? import nixpkgs19 {}
+  pkgs ? import nixpkgs {}
 }:
 with pkgs;
 
