@@ -1,3 +1,79 @@
+# 2022-06-14
+
+- Add highlight groups `CocListLine` and `CocListSearch`.
+
+# 2022-06-11
+
+- Add configuration "notification.disabledProgressSources"
+- Add "rounded" property to "floatConfig"
+
+# 2022-06-04
+
+- Add configuration `workspace.openOutputCommand`.
+- Log channel message of vim when `g:node_client_debug` enabled.
+
+# 2022-05-30
+
+- Disable `progressOnInitialization` for language client by default.
+
+# 2022-05-28
+
+- Support `repeat#set` for commands that make changes only.
+
+# 2022-05-24
+
+- Add transition and annotation support for `workspace.applyEdits()`.
+- Add command `workspace.undo` and `workspace.redo`.
+- Remove configuration `coc.preferences.promptWorkspaceEdit`.
+- Remove command `CocAction` and `CocFix`.
+
+# 2022-05-22
+
+- Check for previous position when not able to find completion match.
+- Add `content` support to `window.showMenuPicker()`
+
+# 2022-05-17
+
+- Add `QuickPick` module.
+- Add API `window.showQuickPick()` and `window.createQuickPick()`.
+
+# 2022-05-16
+
+- Add properties `title`, `loading` & `borderhighlight` to `InputBox`
+
+# 2022-05-14
+
+- Add `InputOption` support to `window.requestInput`
+- Add API `window.createInputBox()`.
+
+# 2022-05-13
+
+- Notification support like VSCode https://github.com/neoclide/coc.nvim/discussions/3813
+- Add configuration `notification.minProgressWidth`
+- Add configuration `notification.preferMenuPicker`
+- Support `source` in notification windows.
+
+# 2022-05-07
+
+- Show sort method as description in outline view.
+- Add configuration `outline.switchSortKey`, default to `<C-s>`.
+- Add configuration `outline.detailAsDescription`, default to `true`.
+- Add variable `g:coc_max_treeview_width`.
+- Add `position: 'center'` support to `window.showMenuPicker()`
+
+# 2022-05-06
+
+- Use menu for `window.showQuickpick()`.
+- Add configuration `outline.autoWidth`, default to `true`.
+
+# 2022-05-05
+
+- Add key bindings to dialog (created by `window.showDialog()`) on neovim.
+
+# 2022-05-04
+
+- Add `languages.registerInlayHintsProvider()` for inlay hint support.
+
 # 2022-04-25
 
 - Add `LinkedEditing` support
@@ -804,7 +880,7 @@
 
 - **Break change** sources excluding `around`, `buffer` or `file` are extracted
   as extensions.
-- **Break change** custom source not exists any more.
+- **Break change** custom source doesn't exist any more.
 - Add `coc.preferences.preferCompleteThanJumpPlaceholder` to make jump
   placeholder behavior as confirm completion when possible.
 - Add `CocDiagnosticChange` autocmd for force statusline update.
@@ -1192,7 +1268,7 @@
 - Add support filetype change of buffer.
 - Add basic test for completion.
 - Improve loading speed, use child process to initialize vim sources.
-- Improve install.sh, install node when not exists.
+- Improve install.sh, install node when it doesn't exist.
 - Improve interface of workspace.
 - Fix loading of configuration content.
 

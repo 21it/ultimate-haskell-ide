@@ -11,6 +11,11 @@
           "default": false,
           "description": "Set to true to use borders."
         },
+        "rounded": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use rounded borders when border is true."
+        },
         "highlight": {
           "type": "string",
           "default": "CocFloating",
@@ -187,7 +192,7 @@
         },
         "progressOnInitialization": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Enable progress report on languageserver initialize."
         },
         "initializationOptions": {
@@ -797,6 +802,7 @@
       "additionalProperties": false,
       "properties": {
         "border": {},
+        "rounded": {},
         "highlight": {},
         "borderhighlight": {},
         "title": {},
@@ -858,6 +864,7 @@
       "additionalProperties": false,
       "properties": {
         "border": {},
+        "rounded": {},
         "highlight": {},
         "borderhighlight": {},
         "title": {},
@@ -942,6 +949,7 @@
       "additionalProperties": false,
       "properties": {
         "border": {},
+        "rounded": {},
         "highlight": {},
         "borderhighlight": {},
         "title": {},
@@ -967,6 +975,11 @@
       "type": "number",
       "default": 80,
       "description": "Maximum width of dialog window."
+    },
+    "dialog.rounded": {
+      "type": "boolean",
+      "default": true,
+      "description": "use rounded border for dialog window."
     },
     "dialog.confirmKey": {
       "type": "string",
@@ -998,35 +1011,75 @@
       "default": "MoreMsg",
       "description": "Highlight group for shortcut character in menu dialog, default to 'MoreMsg'"
     },
-    "notification.marginTop": {
-      "type": "number",
-      "default": 1,
-      "description": "Margin top for notification dialog."
+    "notification.border": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable rounded border for notification windows."
+    },
+    "notification.timeout": {
+      "type": "integer",
+      "default": 10000,
+      "description": "Timeout for auto close notifications, in miniseconds."
     },
     "notification.marginRight": {
-      "type": "number",
-      "default": 1,
-      "description": "Margin right for notification dialog."
+      "type": "integer",
+      "default": 10,
+      "description": "Margin right to the right of editor window."
+    },
+    "notification.focusable": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable focus by user actions (wincmds, mouse events), neovim only."
     },
     "notification.maxWidth": {
-      "type": "number",
+      "type": "integer",
       "default": 60,
       "description": "Maximum content width of notification dialog."
     },
     "notification.maxHeight": {
-      "type": "number",
+      "type": "integer",
       "default": 10,
       "description": "Maximum content height of notification dialog."
+    },
+    "notification.preferMenuPicker": {
+      "type": "boolean",
+      "default": false,
+      "description": "Use menu picker for message notification with actions."
+    },
+    "notification.disabledProgressSources": {
+      "type": "array",
+      "default": [],
+      "description": "Soureces that should be disabled for message progress, use * to disable all message only progresses",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notification.minProgressWidth": {
+      "type": "integer",
+      "default": 30,
+      "description": "Minimal with of progress notification."
     },
     "notification.highlightGroup": {
       "type": "string",
       "default": "CocFloating",
       "description": "Highlight group of notification dialog."
     },
-    "notification.minProgressWidth": {
-      "type": "number",
+    "notification.winblend": {
+      "type": "integer",
       "default": 30,
-      "description": "Minimum width of progress notification."
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Winblend option of notification window, neovim only."
+    },
+    "workspace.openOutputCommand": {
+      "type": "string",
+      "default": "vs",
+      "description": "Command used to open output channel."
+    },
+    "workspace.openResourceCommand": {
+      "type": "string",
+      "default": "tab drop",
+      "description": "Command to open files that not loaded, load files as hidden buffers when empty."
     },
     "workspace.ignoredFiletypes": {
       "type": "array",
@@ -1039,7 +1092,7 @@
     "workspace.bottomUpFiletypes": {
       "type": "array",
       "default": [],
-      "description": "Filetypes that should have workspace folder should resolved from base directory of file.",
+      "description": "Filetypes that should have workspace folder should resolved from base directory of file, or [\"*\"] for any filetype.",
       "items": {
         "type": "string"
       }
@@ -1131,11 +1184,6 @@
       "type": "boolean",
       "default": false,
       "description": "Use vsplit for preview window."
-    },
-    "list.matchHighlightGroup": {
-      "type": "string",
-      "default": "Search",
-      "description": "Highlight group used for matched texts in list window."
     },
     "list.previewHighlightGroup": {
       "type": "string",
@@ -1310,6 +1358,11 @@
       "default": true,
       "description": "Show line number of symbols."
     },
+    "outline.detailAsDescription": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show detail as description aside with label, when false detail will be shown in tooltip on cursor hold."
+    },
     "outline.splitCommand": {
       "type": "string",
       "default": "botright 30vs",
@@ -1319,6 +1372,11 @@
       "type": "boolean",
       "default": true,
       "description": "Reveal item in outline tree on cursor hold."
+    },
+    "outline.autoWidth": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automatically increase window width to avoid wrapped lines."
     },
     "outline.keepWindow": {
       "type": "boolean",
@@ -1330,6 +1388,11 @@
       "default": "category",
       "description": "Sort method for symbols.",
       "enum": ["position", "name", "category"]
+    },
+    "outline.switchSortKey": {
+      "type": "string",
+      "default": "<C-s>",
+      "description": "The key used to switch sort method for symbols provider of current tree view."
     },
     "outline.expandLevel": {
       "type": "number",
@@ -1380,17 +1443,6 @@
       "default": "10MB",
       "description": "Maximum file size in bytes that coc.nvim should handle, default '10MB'"
     },
-    "coc.preferences.promptWorkspaceEdit": {
-      "type": "boolean",
-      "description": "Prompt confirm from user when apply workspace edit for unloaded files.",
-      "default": true
-    },
-    "coc.preferences.listOfWorkspaceEdit": {
-      "type": "string",
-      "default": "quickfix",
-      "description": "List should contains changed locations after workspace edit, default to vim's quickfix",
-      "enum": ["quickfix", "location", "none"]
-    },
     "coc.preferences.useQuickfixForLocations": {
       "type": "boolean",
       "description": "Use vim's quickfix list for jump locations,\n need restart on change.",
@@ -1424,11 +1476,6 @@
       "items": {
         "type": "string"
       }
-    },
-    "coc.preferences.enableFloatHighlight": {
-      "type": "boolean",
-      "description": "Enable highlight for floating window.",
-      "default": true
     },
     "coc.preferences.rootPatterns": {
       "type": "array",

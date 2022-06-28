@@ -13,7 +13,7 @@ endfunction
 
 function! coc#compat#buf_set_lines(bufnr, start, end, replacement) abort
   if s:is_vim
-    call coc#api#notify('buf_set_lines', [a:bufnr, a:start, a:end, 0, a:replacement])
+    call coc#api#exec('buf_set_lines', [a:bufnr, a:start, a:end, 0, a:replacement])
   else
     call nvim_buf_set_lines(a:bufnr, a:start, a:end, 0, a:replacement)
   endif
@@ -167,7 +167,7 @@ function! coc#compat#buf_del_keymap(bufnr, mode, lhs) abort
     try
       call nvim_buf_del_keymap(a:bufnr, a:mode, a:lhs)
     catch /^Vim\%((\a\+)\)\=:E5555/
-      " ignore keymap not exists.
+      " ignore keymap doesn't exist
     endtry
     return
   endif
@@ -231,7 +231,7 @@ function! coc#compat#execute(winid, command, ...) abort
     endif
     noa keepalt call nvim_set_current_win(curr)
   else
-    throw 'win_execute not exists, please upgrade vim.'
+    throw 'win_execute does not exist, please upgrade vim.'
   endif
 endfunc
 
