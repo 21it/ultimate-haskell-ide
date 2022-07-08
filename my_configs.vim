@@ -13,7 +13,7 @@ let g:PaperColor_Theme_Options = {
 syntax on
 filetype plugin indent on
 set t_Co=256
-exe 'set background=' . get(g:, "vimBackground", "dark")
+exe 'set background=' . get(g:, "vimBackground", "light")
 exe 'colorscheme ' . get(g:, "vimColorScheme", "PaperColor")
 exe 'let g:languagetool_jar=' . get(g:, "languagetool_jar", "$LANGUAGE_TOOL_JAR")
 let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
@@ -215,10 +215,8 @@ if exists("*ToggleBackground") == 0
 	function ToggleBackground()
 		if &background == "dark"
             set background=light
-            colorscheme PaperColor
 		else
             set background=dark
-            colorscheme jellybeans
 		endif
 	endfunction
 
@@ -330,3 +328,13 @@ nnoremap <leader>, :vert resize -7<cr>
 nnoremap <leader>. :vert resize +7<cr>
 nnoremap <leader>; :resize -7<cr>
 nnoremap <leader>' :resize +7<cr>
+
+"
+" Cyrillic support for all modes, not only insert.
+" Enable/disable it with Ctrl + 6.
+"
+
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
