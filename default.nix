@@ -125,7 +125,6 @@ let bundles =
             sideways-vim
             vim-LanguageTool
             vim-better-whitespace
-            vim-hindent
             vim-nix
             vim-ormolu
             #vim-syntax-shakespeare

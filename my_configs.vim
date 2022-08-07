@@ -17,12 +17,10 @@ exe 'set background=' . get(g:, "vimBackground", "light")
 exe 'colorscheme ' . get(g:, "vimColorScheme", "PaperColor")
 exe 'let g:languagetool_jar=' . get(g:, "languagetool_jar", "$LANGUAGE_TOOL_JAR")
 let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
-let g:coc_global_extensions = ['coc-metals']
 autocmd VimEnter * :ALEDisable
 autocmd VimEnter * :vs | :te
 autocmd VimEnter * :vert resize -14
 set colorcolumn=67
-let g:hindent_on_save = 0
 let g:brittany_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
@@ -49,17 +47,6 @@ nnoremap <c-l> :SidewaysRight<cr>
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
 nnoremap <c-a> *``
-
-let g:multi_cursor_use_default_mapping=0
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
 
 " CtrlP fuzzy finder
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
