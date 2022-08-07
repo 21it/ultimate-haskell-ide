@@ -117,6 +117,7 @@ let bundles =
         '';
         packages.vim21 = with pkgs.vimPlugins; {
           start = [
+            # new
             coc-nvim
             dhall-vim
             haskell-vim
@@ -127,14 +128,7 @@ let bundles =
             vim-better-whitespace
             vim-nix
             vim-ormolu
-            #vim-syntax-shakespeare
-            #yesod-vim
-            #vim-markdown-preview
-            #vim-brittany
-            #alex-vim
-            #pres-vim
-
-            # Default sources
+            # legacy
             ack-vim
             ale
             auto-pairs
@@ -154,7 +148,6 @@ let bundles =
             vim-snipmate
             vim-snippets
             vim-surround
-            #vim-yankstack
           ];
           opt = [
 
