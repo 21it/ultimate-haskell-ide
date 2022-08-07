@@ -115,12 +115,51 @@ let bundles =
           catch
           endtry
         '';
-        packages.myVimPackage = with pkgs.vimPlugins; {
-          # see examples below how to use custom packages
-          start = [ ];
-          # If a Vim plugin has a dependency that is not explicitly listed in
-          # opt that dependency will always be added to start to avoid confusion.
-          opt = [ ];
+        packages.vim21 = with pkgs.vimPlugins; {
+          start = [
+            coc-nvim
+            dhall-vim
+            haskell-vim
+            hlint-refactor-vim
+            papercolor-theme
+            sideways-vim
+            vim-LanguageTool
+            vim-better-whitespace
+            vim-hindent
+            vim-nix
+            vim-ormolu
+            #vim-syntax-shakespeare
+            #yesod-vim
+            #vim-markdown-preview
+            #vim-brittany
+            #alex-vim
+            #pres-vim
+
+            # Default sources
+            ack-vim
+            ale
+            auto-pairs
+            ctrlp-vim
+            lightline-ale
+            lightline-vim
+            psc-ide-vim
+            purescript-vim
+            vim-commentary
+            vim-expand-region
+            vim-fugitive
+            vim-gitgutter
+            vim-indent-object
+            vim-lastplace
+            vim-markdown
+            vim-repeat
+            vim-snipmate
+            vim-snippets
+            vim-surround
+            #vim-yankstack
+          ];
+          opt = [
+
+          ];
         };
       };
     };
