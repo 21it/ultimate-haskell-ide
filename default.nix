@@ -1,5 +1,4 @@
 let pkgs22 = import (import ./nixpkgs22.nix) {};
-    mavenix = import (fetchTarball "https://github.com/nix-community/mavenix/tarball/7416dbd2861520d44a4d6ecee9d94f89737412dc") {};
 in
 {
   pkgs ? pkgs22,
@@ -79,16 +78,8 @@ let bundles =
         dhall
         dhall-json
       ];
-      maven = [
-        jdk11
-        maven
-        mavenix.cli
-      ];
-      elixir = [
-        elixir
-        inotify-tools
-      ];
     };
+    lesspipe' = writeShellScriptBin "lesspipe" "${lesspipe}/bin/lesspipe.sh";
     vimrc-awesome' = neovim.override {
       viAlias = true;
       vimAlias = true;
@@ -117,37 +108,26 @@ let bundles =
         '';
         packages.vim21 = with pkgs.vimPlugins; {
           start = [
-            # new
-            coc-nvim
-            dhall-vim
-            haskell-vim
-            hlint-refactor-vim
-            papercolor-theme
-            sideways-vim
-            vim-LanguageTool
-            vim-better-whitespace
-            vim-nix
-            vim-ormolu
-            # legacy
+            # Interface
             ack-vim
-            ale
-            auto-pairs
             ctrlp-vim
-            lightline-ale
-            lightline-vim
-            psc-ide-vim
-            purescript-vim
-            vim-commentary
-            vim-expand-region
             vim-fugitive
             vim-gitgutter
-            vim-indent-object
-            vim-lastplace
-            vim-markdown
-            vim-repeat
-            vim-snipmate
-            vim-snippets
-            vim-surround
+            lightline-vim
+            papercolor-theme
+            vim-better-whitespace
+            # Programming
+            haskell-vim
+            hlint-refactor-vim
+            vim-ormolu
+            vim-nix
+            dhall-vim
+            psc-ide-vim
+            purescript-vim
+            # Productivity
+            coc-nvim
+            sideways-vim
+            vim-LanguageTool
           ];
           opt = [
 
@@ -155,7 +135,6 @@ let bundles =
         };
       };
     };
-    lesspipe' = writeShellScriptBin "lesspipe" "${lesspipe}/bin/lesspipe.sh";
 in
   stdenv.mkDerivation{
     name = "vi";
