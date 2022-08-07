@@ -6,7 +6,7 @@ in
   bundle ? "haskell",
   withGit ? true,
   formatter ? "ormolu",
-  vimBackground ? "dark",
+  vimBackground ? "light",
   vimColorScheme ? "PaperColor"
 }:
 with pkgs;
@@ -89,37 +89,42 @@ let bundles =
         inotify-tools
       ];
     };
-    vimrc-awesome' = vim_configurable.customize {
-      name = "vi";
-      vimrcConfig.customRC = ''
+    vimrc-awesome' = neovim.override {
+      viAlias = true;
+      vimAlias = true;
+      configure = {
+        customRC = ''
+          set runtimepath+=${vimrc-awesome}
+          let $PATH.=':${silver-searcher}/bin'
 
-      set runtimepath+=${vimrc-awesome}
-      let $PATH.=':${silver-searcher}/bin'
+          source ${vimrc-awesome}/vimrcs/basic.vim
+          source ${vimrc-awesome}/vimrcs/filetypes.vim
+          source ${vimrc-awesome}/vimrcs/plugins_config.vim
+          source ${vimrc-awesome}/vimrcs/extended.vim
 
-      source ${vimrc-awesome}/vimrcs/basic.vim
-      source ${vimrc-awesome}/vimrcs/filetypes.vim
-      source ${vimrc-awesome}/vimrcs/plugins_config.vim
-      source ${vimrc-awesome}/vimrcs/extended.vim
+          if !exists("g:vimBackground")
+            let g:vimBackground = '${vimBackground}'
+          endif
 
-      if !exists("g:vimBackground")
-        let g:vimBackground = '${vimBackground}'
-      endif
+          if !exists("g:vimColorScheme")
+            let g:vimColorScheme = '${vimColorScheme}'
+          endif
 
-      if !exists("g:vimColorScheme")
-        let g:vimColorScheme = '${vimColorScheme}'
-      endif
-
-      if !exists("g:languagetool_cmd")
-        let g:languagetool_cmd = '${languagetool}/bin/languagetool-commandline'
-      endif
-
-      try
-      source ${vimrc-awesome}/my_configs.vim
-      catch
-      endtry
-
-      '' + (getAttr formatter formatter-registry);
+          try
+          source ${vimrc-awesome}/my_configs.vim
+          catch
+          endtry
+        '';
+        packages.myVimPackage = with pkgs.vimPlugins; {
+          # see examples below how to use custom packages
+          start = [ ];
+          # If a Vim plugin has a dependency that is not explicitly listed in
+          # opt that dependency will always be added to start to avoid confusion.
+          opt = [ ];
+        };
+      };
     };
+    lesspipe' = writeShellScriptBin "lesspipe" "${lesspipe}/bin/lesspipe.sh";
 in
   stdenv.mkDerivation{
     name = "vi";
@@ -134,6 +139,7 @@ in
       nix
       curl
       less
+      lesspipe'
     ]
     ++ gitDerivations
     ++ (concatMap (x: getAttr x bundle-registry) bundles);
