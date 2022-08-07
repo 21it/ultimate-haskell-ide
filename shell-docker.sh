@@ -24,6 +24,6 @@ docker run -it --rm \
   su $USER -c \"NIX_REMOTE=daemon \
     nix-shell \
     ./shell.nix \
-    --pure \
-    --show-trace -v\"
+    --pure --show-trace -v \
+    --argstr bundle minimal\"
   "

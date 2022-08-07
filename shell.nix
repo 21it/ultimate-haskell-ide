@@ -2,11 +2,15 @@ let nixpkgs = import ./nixpkgs22.nix;
 in
 {
   pkgs ? import nixpkgs {},
-  bundle ? null
+  bundle ? null,
+  vimBackground ? "light",
+  vimColorScheme ? "PaperColor"
 }:
 with pkgs;
 
-let pkg = import ./. {inherit bundle;};
+let pkg = import ./. {
+      inherit bundle vimBackground vimColorScheme;
+    };
 in
 
 stdenv.mkDerivation {
