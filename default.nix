@@ -136,15 +136,18 @@ let bundles =
       };
     };
 in
-  stdenv.mkDerivation{
+  stdenv.mkDerivation {
     name = "vi";
     src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
     dontBuild = true;
     dontInstall = true;
     propagatedBuildInputs = [
-      /* vim + coc */
+      /* vim + plugins */
       vimrc-awesome'
+      silver-searcher
       nodejs
+      python38Packages.grip
+      xdg_utils
       /* other */
       nix
       curl
