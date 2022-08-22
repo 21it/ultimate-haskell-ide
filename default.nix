@@ -86,7 +86,7 @@ let bundles =
       configure = {
         customRC = ''
           set runtimepath+=${vimrc-awesome}
-          let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipe'}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin'
+          let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipe'}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin:${git}/bin'
 
           source ${vimrc-awesome}/vimrcs/basic.vim
           source ${vimrc-awesome}/vimrcs/filetypes.vim
