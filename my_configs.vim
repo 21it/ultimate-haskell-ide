@@ -39,6 +39,7 @@ let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
 let g:gitgutter_enabled = 1
+let g:gitgutter_map_keys = 0
 let g:AutoPairsFlyMode = 0
 let g:AutoPairs = {}
 nnoremap <c-h> :SidewaysLeft<cr>
@@ -293,8 +294,8 @@ endfunction
 " LanguageTool
 "
 
-nnoremap <leader>lt :LanguageToolCheck<cr>
-nnoremap <leader>lc :LanguageToolClear<cr>
+"nnoremap <leader>lt :LanguageToolCheck<cr>
+"nnoremap <leader>lc :LanguageToolClear<cr>
 
 "
 " Resize panes
@@ -330,4 +331,4 @@ nnoremap <leader>k :tabnext<cr>
 nnoremap <leader>h :tabfirst<cr>
 nnoremap <leader>l :tablast<cr>
 nnoremap <leader>t :tabnew<cr>
-nnoremap <leader>tt :tabnew \| startinsert \| term<cr>
+nnoremap <leader>e :tabnew \| startinsert \| term<cr>
