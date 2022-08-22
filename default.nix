@@ -86,7 +86,7 @@ let bundles =
       configure = {
         customRC = ''
           set runtimepath+=${vimrc-awesome}
-          let $PATH.=':${silver-searcher}/bin'
+          let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipe'}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin'
 
           source ${vimrc-awesome}/vimrcs/basic.vim
           source ${vimrc-awesome}/vimrcs/filetypes.vim
@@ -144,15 +144,9 @@ in
     propagatedBuildInputs = [
       /* vim + plugins */
       vimrc-awesome'
-      silver-searcher
-      nodejs
-      python38Packages.grip
-      xdg_utils
       /* other */
       nix
       curl
-      less
-      lesspipe'
     ]
     ++ gitDerivations
     ++ (concatMap (x: getAttr x bundle-registry) bundles);
