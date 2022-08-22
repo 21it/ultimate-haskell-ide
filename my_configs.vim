@@ -320,3 +320,14 @@ highlight lCursor guifg=NONE guibg=Cyan
 "
 
 tnoremap <esc> <C-\><C-n>
+
+"
+" Tabs shortcuts
+"
+
+nnoremap <leader>j :tabprev<cr>
+nnoremap <leader>k :tabnext<cr>
+nnoremap <leader>h :tabfirst<cr>
+nnoremap <leader>l :tablast<cr>
+nnoremap <leader>t :tabnew<cr>
+nnoremap <leader>tt :tabnew \| startinsert \| term<cr>
