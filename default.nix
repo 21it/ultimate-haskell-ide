@@ -136,19 +136,20 @@ let bundles =
       };
     };
 in
-  stdenv.mkDerivation {
-    name = "vi";
-    src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
-    dontBuild = true;
-    dontInstall = true;
-    propagatedBuildInputs = [
-      /* vim + plugins */
-      vimrc-awesome'
-      /* other */
-      nix
-      curl
-    ]
-    ++ gitDerivations
-    ++ (concatMap (x: getAttr x bundle-registry) bundles);
-  }
+  vimrc-awesome'
+  # stdenv.mkDerivation {
+  #   name = "vi";
+  #   src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
+  #   dontBuild = true;
+  #   dontInstall = true;
+  #   propagatedBuildInputs = [
+  #     /* vim + plugins */
+  #     vimrc-awesome'
+  #     /* other */
+  #     nix
+  #     curl
+  #   ]
+  #   ++ gitDerivations
+  #   ++ (concatMap (x: getAttr x bundle-registry) bundles);
+  # }
 
