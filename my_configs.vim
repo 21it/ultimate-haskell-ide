@@ -211,11 +211,7 @@ nmap <C-k> gk
 " Netrw
 "
 
-let g:NERDTreeHijackNetrw = 0
 let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 25
 
 "
 " dhall
@@ -233,10 +229,6 @@ set signcolumn=yes
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
-
-" Map keybinding
-"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 
 "
 " Haskell LSP/Wingmain/Coc
