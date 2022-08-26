@@ -55,7 +55,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " CoC configs
 "
 
-" if hidden is not set, TextEdit might fail.
+" Required for operations modifying multiple buffers like rename.
+" If hidden is not set, TextEdit might fail.
 set hidden
 
 " Some servers have issues with backup files, see #649
@@ -71,7 +72,7 @@ set updatetime=300
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-" always show signcolumns
+" Always draw sign column. Prevent buffer moving when adding/deleting sign.
 set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -214,21 +215,15 @@ nmap <C-k> gk
 let g:netrw_liststyle = 3
 
 "
-" dhall
+" Dhall
 "
 
 let g:LanguageClient_serverCommands = {
     \ 'dhall': ['dhall-lsp-server'],
     \ }
 
-" comment the next line to disable automatic format on save
+" Comment the next line to disable automatic format on save.
 let g:dhall_format=1
-
-" Always draw sign column. Prevent buffer moving when adding/deleting sign.
-set signcolumn=yes
-
-" Required for operations modifying multiple buffers like rename.
-set hidden
 
 "
 " Haskell LSP/Wingmain/Coc
