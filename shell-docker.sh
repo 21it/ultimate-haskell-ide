@@ -25,5 +25,5 @@ docker run -it --rm \
     nix-shell \
     ./shell.nix \
     --pure --show-trace -v \
-    --argstr bundle minimal\"
+    --arg mini true\"
   "

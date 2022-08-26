@@ -9,7 +9,7 @@ VIM_COLOR_SCHEME="${VIM_COLOR_SCHEME:-PaperColor}"
 nix-shell \
   "$THIS_DIR/shell.nix" \
   --pure --show-trace -v \
-  --argstr bundle minimal \
+  --arg mini true \
   --argstr vimBackground $VIM_BACKGROUND \
   --argstr vimColorScheme $VIM_COLOR_SCHEME \
   --option extra-substituters "https://cache.nixos.org https://hydra.iohk.io" \
