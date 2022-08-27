@@ -16,8 +16,7 @@ map <leader>j :CtrlP<cr>
 map <C-b> :CtrlPBuffer<cr>
 
 let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = 'node_modules\|_build\|deps\|^\.DS_Store\|^\.git\|^\.coffee'
-
+let g:ctrlp_custom_ignore = '^\.git\|^\.hg\|^\.svn\|node_modules\|dist-newstyle\|build\|_build\|_cache\|_site'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
