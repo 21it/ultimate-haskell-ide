@@ -48,6 +48,12 @@ let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
 nnoremap <c-a> *``
 
+" Sideways plugin to move text using ALT+[hl]
+nmap <M-h> :SidewaysLeft<cr>
+nmap <M-l> :SidewaysRight<cr>
+vmap <M-h> :SidewaysLeft<cr>
+vmap <M-l> :SidewaysRight<cr>
+
 " CtrlP fuzzy finder
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
