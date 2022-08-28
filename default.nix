@@ -90,7 +90,6 @@ let ignore-patterns = ''
             #
             haskell-vim
             hlint-refactor-vim
-            vim-ormolu
             vim-nix
             dhall-vim
             psc-ide-vim
