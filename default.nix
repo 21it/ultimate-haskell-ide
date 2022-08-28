@@ -55,7 +55,6 @@ let ignore-patterns = ''
           let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipe'}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin:${git}/bin'
 
           source ${vimrc-awesome}/vimrcs/basic.vim
-          source ${vimrc-awesome}/vimrcs/filetypes.vim
           source ${vimrc-awesome}/vimrcs/plugins_config.vim
           source ${vimrc-awesome}/vimrcs/extended.vim
 
@@ -67,10 +66,7 @@ let ignore-patterns = ''
             let g:vimColorScheme = '${vimColorScheme}'
           endif
 
-          try
           source ${vimrc-awesome}/my_configs.vim
-          catch
-          endtry
 
         '' + (getAttr formatter formatter-registry);
         packages.vim21 = with pkgs.vimPlugins; {

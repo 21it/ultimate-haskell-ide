@@ -1,3 +1,7 @@
+"
+" Colors, style and theme
+"
+
 " Better infix functions in Haskell
 let g:PaperColor_Theme_Options = {
   \   'theme': {
@@ -9,6 +13,14 @@ let g:PaperColor_Theme_Options = {
   \     }
   \   }
   \ }
+
+if exists('$TMUX')
+    if has('nvim')
+        set termguicolors
+    else
+        set term=screen-256color
+    endif
+endif
 
 syntax on
 filetype plugin indent on
@@ -34,6 +46,7 @@ let vim_markdown_preview_browser='Firefox'
 let vim_markdown_preview_temp_file=1
 let vim_markdown_preview_github=1
 let vim_markdown_preview_use_xdg_open=1
+let vim_markdown_folding_disabled = 1
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
