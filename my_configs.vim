@@ -35,7 +35,7 @@ set colorcolumn=67
 let g:brittany_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
-nnoremap <SPACE> <Nop>
+nnoremap <space> <Nop>
 let mapleader = " "
 set splitright
 set expandtab
@@ -184,21 +184,21 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>ca  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+" Find symbol of current dcocument
+nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+" Search workspace symbolsc
+nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+" Do default action for necxt item.
+nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
+" Do default action for prcevious item.
+nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
 
 " Remap <C-h> and <C-l> for scroll float windows/popups.
@@ -248,16 +248,19 @@ let g:dhall_format=1
 " Haskell LSP/Wingmain/Coc
 "
 
-" use [h and ]h to navigate between holes
-nnoremap <silent> [h :<C-U>call CocActionAsync('diagnosticPrevious', 'hint')<CR>
-nnoremap <silent> ]h :<C-U>call <SID>JumpToNextHole()<CR>
+" Disable Yesod mappings because I'm not using them much anyway.
+" Maybe should reseach how useful Yesod plugin mappings are.
+let g:yesod_disable_maps = 1
 
-" <leader>d to perform a pattern match, <leader>n to fill a hole
-nnoremap <silent> <leader>d  :<C-u>set operatorfunc=<SID>WingmanDestruct<CR>g@l
-nnoremap <silent> <leader>n  :<C-u>set operatorfunc=<SID>WingmanFillHole<CR>g@l
-nnoremap <silent> <leader>r  :<C-u>set operatorfunc=<SID>WingmanRefine<CR>g@l
-nnoremap <silent> <leader>c  :<C-u>set operatorfunc=<SID>WingmanUseCtor<CR>g@l
-nnoremap <silent> <leader>a  :<C-u>set operatorfunc=<SID>WingmanDestructAll<CR>g@l
+" Wingman mappings
+nnoremap <silent> <leader>wp :<C-U>call CocActionAsync('diagnosticPrevious', 'hint')<CR>
+nnoremap <silent> <leader>wn :<C-U>call <SID>JumpToNextHole()<CR>
+
+nnoremap <silent> <leader>wd  :<C-u>set operatorfunc=<SID>WingmanDestruct<CR>g@l
+nnoremap <silent> <leader>wf  :<C-u>set operatorfunc=<SID>WingmanFillHole<CR>g@l
+nnoremap <silent> <leader>wr  :<C-u>set operatorfunc=<SID>WingmanRefine<CR>g@l
+nnoremap <silent> <leader>wc  :<C-u>set operatorfunc=<SID>WingmanUseCtor<CR>g@l
+nnoremap <silent> <leader>wa  :<C-u>set operatorfunc=<SID>WingmanDestructAll<CR>g@l
 
 function! s:JumpToNextHole()
   call CocActionAsync('diagnosticNext', 'hint')

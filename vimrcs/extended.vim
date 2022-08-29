@@ -62,18 +62,17 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
 " When you search with Ack, display your results in cope by doing:
-"   <leader>cc
+"   <M-c>c
 "
 " To go to the next search result do:
-"   <leader>n
+"   <M-n>
 "
 " To go to the previous search results do:
-"   <leader>p
+"   <M-p>
 "
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+map <M-c> :botright cope<cr>
+map <M-n> :cn<cr>
+map <M-p> :cp<cr>
 
 " Make sure that enter is never overriden in the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
