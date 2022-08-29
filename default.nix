@@ -79,6 +79,7 @@ let ignore-patterns = ''
             vim-fugitive
             vim-gitgutter
             lightline-vim
+            vim-togglelist
             papercolor-theme
             vim-better-whitespace
             #

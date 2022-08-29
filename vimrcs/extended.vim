@@ -59,10 +59,8 @@ map <leader>g :Ack
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with Ack, display your results in cope by doing:
-"   <M-c>c
+" When you search with Ack, toggle your results in cope by doing:
+"   <M-f>
 "
 " To go to the next search result do:
 "   <M-n>
@@ -70,7 +68,8 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 " To go to the previous search results do:
 "   <M-p>
 "
-map <M-c> :botright cope<cr>
+let g:toggle_list_no_mappings = 1
+map <M-f> :call ToggleQuickfixList()<cr>
 map <M-n> :cn<cr>
 map <M-p> :cp<cr>
 
