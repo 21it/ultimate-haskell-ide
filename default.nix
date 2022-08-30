@@ -50,24 +50,11 @@ let ignore-patterns = ''
       vimAlias = true;
       configure = {
         customRC = ''
-
           set runtimepath+=${vimrc-awesome}
           let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipe'}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin:${git}/bin'
-
-          source ${vimrc-awesome}/vimrcs/basic.vim
-          source ${vimrc-awesome}/vimrcs/plugins_config.vim
-          source ${vimrc-awesome}/vimrcs/extended.vim
-
-          if !exists("g:vimBackground")
-            let g:vimBackground = '${vimBackground}'
-          endif
-
-          if !exists("g:vimColorScheme")
-            let g:vimColorScheme = '${vimColorScheme}'
-          endif
-
-          source ${vimrc-awesome}/my_configs.vim
-
+          let g:vimBackground = '${vimBackground}'
+          let g:vimColorScheme = '${vimColorScheme}'
+          source ${vimrc-awesome}/.vimrc
         '' + (getAttr formatter formatter-registry);
         packages.vim21 = with pkgs.vimPlugins; {
           start = [
