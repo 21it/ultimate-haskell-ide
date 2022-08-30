@@ -2,24 +2,24 @@
 " BASIC CONFIGS
 "
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Sets how many lines of history VIM has to remember
 set history=500
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
 au FocusGained,BufEnter * checktime
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
@@ -77,10 +77,10 @@ set novisualbell
 set t_vb=
 set tm=500
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Enable syntax highlighting
 syntax enable
 
@@ -91,18 +91,19 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Turn backup off, since most stuff is in SVN, git etc. anyway...
 set nobackup
 set nowb
 set noswapfile
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Use spaces instead of tabs
 set expandtab
 
@@ -121,19 +122,19 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
-""""""""""""""""""""""""""""""
+"
 " => Visual mode related
-""""""""""""""""""""""""""""""
+"
+
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -149,9 +150,10 @@ endtry
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
-""""""""""""""""""""""""""""""
+"
 " => Status line
-""""""""""""""""""""""""""""""
+"
+
 " Always show the status line
 set laststatus=2
 
@@ -159,9 +161,10 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
@@ -184,10 +187,10 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
@@ -197,10 +200,10 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
@@ -214,9 +217,10 @@ map <leader>x :e ~/buffer.md<cr>
 map <leader>pp :setlocal paste!<cr>
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Returns true if paste mode is enabled
 function! HasPaste()
     if &paste
@@ -268,20 +272,21 @@ function! VisualSelection(direction, extra_filter) range
 endfunction
 
 "
-" PLUGINS CONFIGS
+" PLUGIN CONFIGS
 "
 
-""""""""""""""""""""""""""""""
+"
 " => Load pathogen paths
-""""""""""""""""""""""""""""""
+"
+
 let s:vim_runtime = expand('<sfile>:p:h')."/."
 call pathogen#infect(s:vim_runtime.'/src/{}')
 call pathogen#helptags()
 
-
-""""""""""""""""""""""""""""""
+"
 " => CTRL-P
-""""""""""""""""""""""""""""""
+"
+
 let g:ctrlp_working_path_mode = 0
 
 let g:ctrlp_map = '<C-f>'
@@ -291,9 +296,10 @@ map <C-b> :CtrlPBuffer<cr>
 let g:ctrlp_max_height = 20
 let g:ctrlp_custom_ignore = '^\.git\|^\.hg\|^\.svn\|node_modules\|dist-newstyle\|build\|_build\|_cache\|_site'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => lightline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
@@ -319,10 +325,11 @@ let g:lightline = {
 " EXTENDED CONFIGS
 "
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Turn persistent undo on
 "    means that you can undo even when you close a buffer/VIM
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 try
     set undodir=~/.ultimate-haskell-ide/tmp/undodir
     set undofile
@@ -337,9 +344,10 @@ cnoremap <C-K>		<C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Parenthesis/bracket
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 vnoremap $1 <esc>`>a)<esc>`<i(<esc>
 vnoremap $2 <esc>`>a]<esc>`<i[<esc>
 vnoremap $3 <esc>`>a}<esc>`<i{<esc>
@@ -356,16 +364,18 @@ inoremap $q ''<esc>i
 inoremap $e ""<esc>i
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Omni complete functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " => Ack searching and cope displaying
 "    requires ack.vim - it's much better than vimgrep/grep
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+
 " Use the the_silver_searcher if possible (much faster than Ack)
 if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
@@ -402,7 +412,7 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 "
 
 "
-" Colors, style and theme
+" => Colors, style and theme
 "
 
 " Better infix functions in Haskell
@@ -426,7 +436,6 @@ if exists('$TMUX')
 endif
 
 syntax on
-filetype plugin indent on
 set t_Co=256
 exe 'set background=' . get(g:, "vimBackground", "light")
 exe 'colorscheme ' . get(g:, "vimColorScheme", "PaperColor")
@@ -474,7 +483,7 @@ vmap <M-l> :SidewaysRight<cr>
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 "
-" CoC configs
+" => CoC configs
 "
 
 " Required for operations modifying multiple buffers like rename.
@@ -484,9 +493,6 @@ set hidden
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
-
-" Better display for messages
-" set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -624,20 +630,20 @@ if exists("*ToggleBackground") == 0
 endif
 
 "
-" Jump between virtual lines in soft-wrapping mode
+" => Jump between virtual lines in soft-wrapping mode
 "
 
 nmap <C-j> gj
 nmap <C-k> gk
 
 "
-" Netrw
+" => Netrw
 "
 
 let g:netrw_liststyle = 3
 
 "
-" Dhall
+" => Dhall
 "
 
 let g:LanguageClient_serverCommands = {
@@ -648,7 +654,7 @@ let g:LanguageClient_serverCommands = {
 let g:dhall_format=1
 
 "
-" Haskell LSP/Wingmain/Coc
+" => Haskell LSP/Wingmain/Coc
 "
 
 " Disable Yesod mappings because I'm not using them much anyway.
@@ -703,14 +709,14 @@ function! s:WingmanUseCtor(type)
 endfunction
 
 "
-" LanguageTool
+" => LanguageTool
 "
 
 "nnoremap <leader>lt :LanguageToolCheck<cr>
 "nnoremap <leader>lc :LanguageToolClear<cr>
 
 "
-" Resize panes
+" => Resize panes
 "
 
 nnoremap <leader>, :vert resize -7<cr>
