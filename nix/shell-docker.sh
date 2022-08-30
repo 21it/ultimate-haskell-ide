@@ -11,7 +11,7 @@ trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDS
 "
 
 docker run -it --rm \
-  -v "$THIS_DIR:/app" \
+  -v "$THIS_DIR/..:/app" \
   -v "nix-$USER:/nix" \
   -v "nix-home-$USER:/home/$USER" \
   --security-opt seccomp=unconfined \
@@ -23,7 +23,7 @@ docker run -it --rm \
   sleep 1 &&
   su $USER -c \"NIX_REMOTE=daemon \
     nix-shell \
-    ./shell.nix \
+    ./nix/shell.nix \
     --pure --show-trace -v \
     --arg mini true\"
   "

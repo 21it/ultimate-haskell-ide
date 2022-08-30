@@ -17,7 +17,6 @@ let ignore-patterns = ''
       *.nix
       *.sh
       *.md
-      *.py
       LICENSE
       result
     '';
@@ -38,7 +37,7 @@ let ignore-patterns = ''
     lesspipe' = writeShellScriptBin "lesspipe" "${lesspipe}/bin/lesspipe.sh";
     vimrc-awesome = stdenv.mkDerivation {
       name = "vimrc-awesome";
-      src = nix-gitignore.gitignoreSourcePure ignore-patterns ./.;
+      src = nix-gitignore.gitignoreSourcePure ignore-patterns ./..;
       dontBuild = true;
       installPhase = ''
         mkdir -p $out/
@@ -54,7 +53,7 @@ let ignore-patterns = ''
           let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipe'}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin:${git}/bin'
           let g:vimBackground = '${vimBackground}'
           let g:vimColorScheme = '${vimColorScheme}'
-          source ${vimrc-awesome}/.vimrc
+          source ${vimrc-awesome}/vimrc.vim
         '' + (getAttr formatter formatter-registry);
         packages.vim21 = with pkgs.vimPlugins; {
           start = [
