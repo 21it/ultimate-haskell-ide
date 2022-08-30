@@ -32,15 +32,6 @@ If you have no idea what is Nix derivation, where and how you can use this packa
 import (fetchTarball "https://github.com/tim2CF/ultimate-haskell-ide/tarball/master") {}
 ```
 
-### Without Nix (not recommended)
-
-#### Warning: to use this package without Nix, you have to install all binary dependencies manually. Look [default.nix](https://github.com/tim2CF/ultimate-haskell-ide/blob/master/default.nix) file for complete list of dependencies.
-
-```bash
-git clone --depth=1 https://github.com/tim2CF/ultimate-haskell-ide.git ~/.vim_runtime
-sh ~/.vim_runtime/install_awesome_vimrc.sh
-```
-
 # Usage
 
 ```bash
