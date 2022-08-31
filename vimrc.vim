@@ -90,15 +90,14 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-
 "
 " => Files, backups and undo
 "
 
 " Turn backup off, since most stuff is in SVN, git etc. anyway...
 set nobackup
-set nowb
 set noswapfile
+set nowritebackup
 
 "
 " => Text, tab and indent related
@@ -110,9 +109,9 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -131,7 +130,6 @@ set wrap "Wrap lines
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-
 "
 " => Moving around, tabs, windows and buffers
 "
@@ -149,7 +147,6 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
 "
 " => Status line
 "
@@ -159,7 +156,6 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
 
 "
 " => Editing mappings
@@ -174,24 +170,11 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
-
 "
 " => Spell checking
 "
 
-" Pressing ,ss will toggle and untoggle spell checking
+" Toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
@@ -204,18 +187,8 @@ map <leader>s? z=
 " => Misc
 "
 
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scribble
-map <leader>q :e ~/buffer<cr>
-
 " Quickly open a markdown buffer for scribble
-map <leader>x :e ~/buffer.md<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
+map <leader>z :e ~/.ultimate-haskell-ide/notes.md<cr>
 
 "
 " => Helper functions
@@ -363,13 +336,11 @@ inoremap $4 {<esc>o}<esc>O
 inoremap $q ''<esc>i
 inoremap $e ""<esc>i
 
-
 "
 " => Omni complete functions
 "
 
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
 
 "
 " => Ack searching and cope displaying
@@ -441,17 +412,12 @@ exe 'set background=' . get(g:, "vimBackground", "light")
 exe 'colorscheme ' . get(g:, "vimColorScheme", "PaperColor")
 exe 'let g:languagetool_jar=' . get(g:, "languagetool_jar", "$LANGUAGE_TOOL_JAR")
 let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
-"autocmd VimEnter * :vs | :te
-"autocmd VimEnter * :vert resize -14
 set colorcolumn=67
-let g:brittany_on_save = 0
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 nnoremap <space> <Nop>
 let mapleader = " "
 set splitright
-set expandtab
-set shiftwidth=2
 let vim_markdown_preview_toggle=1
 let vim_markdown_preview_hotkey='<C-p>'
 let vim_markdown_preview_browser='Firefox'
@@ -467,11 +433,9 @@ let g:gitgutter_enabled = 1
 let g:gitgutter_map_keys = 0
 let g:AutoPairsFlyMode = 0
 let g:AutoPairs = {}
-nnoremap <c-h> :SidewaysLeft<cr>
-nnoremap <c-l> :SidewaysRight<cr>
-let g:mix_format_on_save = 1
-let g:mix_format_silent_errors = 1
 nnoremap <c-a> *``
+"autocmd VimEnter * :vs | :te
+"autocmd VimEnter * :vert resize -14
 
 " Sideways plugin to move text using ALT+[hl]
 nmap <M-h> :SidewaysLeft<cr>
@@ -489,10 +453,6 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " Required for operations modifying multiple buffers like rename.
 " If hidden is not set, TextEdit might fail.
 set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -609,7 +569,6 @@ nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
-
 " Remap <C-h> and <C-l> for scroll float windows/popups.
 " Note coc#float#scroll works on neovim >= 0.4.3 or vim >= 8.2.0750
 nnoremap <nowait><expr> <C-h> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-h>"
@@ -725,7 +684,7 @@ nnoremap <leader>; :resize -7<cr>
 nnoremap <leader>' :resize +7<cr>
 
 "
-" Cyrillic support for all modes, not only insert.
+" => Cyrillic support for all modes, not only insert.
 " Enable/disable it with Ctrl + 6.
 "
 
@@ -735,13 +694,13 @@ set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 
 "
-" Some stuff for terminal mode
+" => Some stuff for terminal mode
 "
 
 tnoremap <esc> <C-\><C-n>
 
 "
-" Tabs shortcuts
+" => Tabs shortcuts
 "
 
 nnoremap <leader>j :tabprev<cr>
@@ -750,3 +709,5 @@ nnoremap <leader>h :tabfirst<cr>
 nnoremap <leader>l :tablast<cr>
 nnoremap <leader>t :tabnew<cr>
 nnoremap <leader>e :tabnew \| startinsert \| term<cr>
+nnoremap <leader>x :tabclose<cr>
+nnoremap <leader>o :tabonly<cr>
