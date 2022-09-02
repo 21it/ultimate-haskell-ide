@@ -93,38 +93,31 @@ let ignore-patterns = ''
 in
   if mini
   then vi21
-  else [
+  else {
     #
     # Vi
     #
-    vi21
+    vi = vi21;
     #
     # Haskell
     #
-    haskell.compiler.ghc902
-    haskellPackages.stack
-    cabal-install
-    zlib
-    haskell-language-server
-    cabal2nix
-    ghcid
-    haskellPackages.hlint
-    haskellPackages.hoogle
-    haskellPackages.apply-refact
-    haskellPackages.hspec-discover
-    haskellPackages.implicit-hie
-    haskellPackages.ormolu
-    haskellPackages.brittany
+    ghc = haskell.compiler.ghc902;
+    stack = haskellPackages.stack;
+    cabal = cabal-install;
+    hlint = haskellPackages.hlint;
+    hoogle = haskellPackages.hoogle;
+    apply-refact = haskellPackages.apply-refact;
+    hspec-discover = haskellPackages.hspec-discover;
+    implicit-hie = haskellPackages.implicit-hie;
+    ormolu = haskellPackages.ormolu;
+    brittany = haskellPackages.brittany;
+    inherit zlib haskell-language-server cabal2nix ghcid;
     #
     # Dhall
     #
-    dhall
-    dhall-json
+    inherit dhall dhall-json;
     #
     # Misc
     #
-    nix
-    niv
-    git
-    curl
-  ]
+    inherit nix niv git curl;
+  }
