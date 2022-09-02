@@ -14,7 +14,7 @@ let pkg = import ./. {
 in
 
 stdenv.mkDerivation {
-  name = "vimrc-awesome-shell";
+  name = "vi21shell";
   buildInputs = if mini then [pkg] else pkg;
   TERM = "xterm-256color";
 }

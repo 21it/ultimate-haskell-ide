@@ -34,9 +34,9 @@ let ignore-patterns = ''
       let g:ormolu_disable = 1
       '';
     };
-    lesspipe' = writeShellScriptBin "lesspipe" "${lesspipe}/bin/lesspipe.sh";
-    vimrc-awesome = stdenv.mkDerivation {
-      name = "vimrc-awesome";
+    lesspipeWrapper = writeShellScriptBin "lesspipe" "${lesspipe}/bin/lesspipe.sh";
+    vi21src = stdenv.mkDerivation {
+      name = "vi21src";
       src = nix-gitignore.gitignoreSourcePure ignore-patterns ./..;
       dontBuild = true;
       installPhase = ''
@@ -44,16 +44,16 @@ let ignore-patterns = ''
         cp -R ./ $out/
       '';
     };
-    vimrc-awesome' = neovim.override {
+    vi21 = neovim.override {
       viAlias = true;
       vimAlias = true;
       configure = {
         customRC = ''
-          set runtimepath+=${vimrc-awesome}
-          let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipe'}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin:${git}/bin'
+          set runtimepath+=${vi21src}
+          let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipeWrapper}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin:${git}/bin'
           let g:vimBackground = '${vimBackground}'
           let g:vimColorScheme = '${vimColorScheme}'
-          source ${vimrc-awesome}/vimrc.vim
+          source ${vi21src}/vimrc.vim
         '' + (getAttr formatter formatter-registry);
         packages.vim21 = with pkgs.vimPlugins; {
           start = [
@@ -92,12 +92,12 @@ let ignore-patterns = ''
     };
 in
   if mini
-  then vimrc-awesome'
+  then vi21
   else [
     #
     # Vi
     #
-    vimrc-awesome'
+    vi21
     #
     # Haskell
     #
