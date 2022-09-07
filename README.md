@@ -2,8 +2,6 @@
 
 <img src="logo.png" alt="logo" width="350"/>
 
-If you have no idea what is Nix derivation, where and how you can use this package, or you just want to try it out somewhere very quickly - that's completely fine. Just check out [tkachuk-labs/stack-templates](https://github.com/tkachuk-labs/stack-templates) repo first.
-
 # Features
 
 - Syntax highlighting
@@ -24,12 +22,20 @@ If you have no idea what is Nix derivation, where and how you can use this packa
 
 # Installation
 
-### With Nix
+## Requirements
 
-#### Note: to make installation process much faster, make sure you are using [cachix](https://all-hies.cachix.org/).
+[Nix](https://nixos.org/) package manager should be installed.
+
+## Minimal
 
 ```nix
-import (fetchTarball "https://github.com/tim2CF/ultimate-haskell-ide/tarball/master") {}
+./nix/install.sh mini
+```
+
+## Full
+
+```nix
+./nix/install.sh maxi
 ```
 
 # Usage
@@ -55,34 +61,31 @@ This IDE is based on normal Vim. It should support all the most standard Vim com
 | **:e ./src/Foo.hs** | Edit file in current buffer. |
 | **:sp ./src/Foo.hs** | Split screen horizontally and edit file in new buffer. |
 | **:vsp ./src/Foo.hs** | Split screen vertically and edit file in new buffer. |
-| **:term** | Split screen horizontally and open new terminal session. |
-| **:vert term** | Split screen vertically and open new terminal session. |
-| **Ctrl-w Shift-n** | Switch from **terminal** insert mode to normal (to scroll, copy text etc). To switch back to **terminal** insert mode just press **i**. |
+| **:sp\|term** | Split screen horizontally and open new terminal session. |
+| **:vsp\|term** | Split screen vertically and open new terminal session. |
+| **Esc** | Switch from **terminal** insert mode to normal (to scroll, copy text etc). To switch back to **terminal** insert mode just press **i**. |
 | **Ctrl-ww** | Focus on next split window clockwise. |
 | **Ctrl-wh** | Focus on next split window in given direction (left). |
 | **Ctrl-wj** | Focus on next split window in given direction (down). |
 | **Ctrl-wk** | Focus on next split window in given direction (up). |
 | **Ctrl-wl** | Focus on next split window in given direction (right). |
-| **gt** | Focus on next tab. |
-| **:tabclose** | Close current tab. |
+| **Space-h** | Focus on first tab. |
+| **Space-j** | Focus on prev tab. |
+| **Space-k** | Focus on next tab. |
+| **Space-l** | Focus on last tab. |
+| **Space-t** | Open new tab. |
+| **Space-e** | Open new tab with terminal in insert mode. |
+| **Space-x** | Close current tab. |
 | **:tabonly** | Close all tabs except current. |
 | **gd** | Jump to expression definition. |
 | **Shift-k** | Show expression type and documentation. |
 | **to** | Apply refactoring according one hint at cursor position. |
 | **ta** | Apply all refactoring suggestions in current buffer. |
 
-# Known issues
-
-- I tested this derivation only on x86-64 Alpine Linux. Anyway, Nix derivation usually is very portable thing and theoretically should work everywhere.
-
-- HIE (Haskell IDE engine) in some cases requires some time to start and warm-up. It depends on project size, but usually this startup delay appears in projects with **custom-setup** directive. Anyway, after HIE is started, all IDE features like linter suggestions, jump to definition, auto-completion, auto-refactoring and documentation should work instantly.
-
 <br>
 <p align="center">
   <tt>
     Made with ❤️ by
-    <a href="https://itkach.uk" target="_blank">Ilja Tkachuk</a>
-    aka
-    <a href="https://github.com/timCF" target="_blank">timCF</a>
+    <a href="https://21it.github.io/" target="_blank">21it</a>
   </tt>
 </p>

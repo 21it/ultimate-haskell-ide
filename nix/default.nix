@@ -54,6 +54,10 @@ let ignore-patterns = ''
           let g:vimBackground = '${vimBackground}'
           let g:vimColorScheme = '${vimColorScheme}'
           source ${vi21src}/vimrc.vim
+          try
+            source ~/.ultimate-haskell-ide/vimrc.vim
+          catch
+          endtry
         '' + (getAttr formatter formatter-registry);
         packages.vim21 = with pkgs.vimPlugins; {
           start = [
