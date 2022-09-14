@@ -435,7 +435,6 @@ let g:AutoPairsFlyMode = 0
 let g:AutoPairs = {}
 nnoremap <c-a> *``
 "autocmd VimEnter * :vs | :startinsert | :te
-"autocmd VimEnter * :vert resize -14
 
 " Sideways plugin to move text using ALT+[hl]
 nmap <M-h> :SidewaysLeft<cr>
