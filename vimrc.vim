@@ -434,7 +434,7 @@ let g:gitgutter_map_keys = 0
 let g:AutoPairsFlyMode = 0
 let g:AutoPairs = {}
 nnoremap <c-a> *``
-"autocmd VimEnter * :vs | :te
+"autocmd VimEnter * :vs | :startinsert | :te
 "autocmd VimEnter * :vert resize -14
 
 " Sideways plugin to move text using ALT+[hl]
