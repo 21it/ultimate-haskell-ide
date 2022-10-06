@@ -244,6 +244,12 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
+function! AckStr(str) range
+    let l:pattern = escape(a:str, "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+    call CmdLine("Ack '" . l:pattern . "' " )
+endfunction
+
 "
 " PLUGIN CONFIGS
 "
@@ -434,6 +440,7 @@ let g:gitgutter_map_keys = 0
 let g:AutoPairsFlyMode = 0
 let g:AutoPairs = {}
 nnoremap <c-a> *``
+nnoremap <c-s> :call AckStr(expand("<cword>"))<CR>
 "autocmd VimEnter * :vs | :startinsert | :te
 
 " Sideways plugin to move text using ALT+[hl]
