@@ -317,7 +317,6 @@ endtry
 
 " Bash like keys for the command line
 cnoremap <C-A>		<Home>
-cnoremap <C-E>		<End>
 cnoremap <C-K>		<C-U>
 
 cnoremap <C-P> <Up>
@@ -518,10 +517,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -537,7 +532,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>f  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
@@ -717,3 +712,15 @@ nnoremap <leader>t :tabnew<cr>
 nnoremap <leader>e :tabnew \| startinsert \| term<cr>
 nnoremap <leader>x :tabclose<cr>
 nnoremap <leader>o :tabonly<cr>
+
+"
+" => Misc shortcuts
+"
+" TODO : better mappings with leader
+"
+
+nnoremap <leader>q :q<cr>
+nnoremap <c-e> :Ex<cr>
+nnoremap <m-s> :sp<cr>
+nnoremap <m-v> :vsp<cr>
+nnoremap <m-e> :startinsert \| term<cr>
