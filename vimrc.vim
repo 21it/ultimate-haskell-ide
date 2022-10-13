@@ -174,21 +174,14 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 " => Spell checking
 "
 
-" Toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+" Toggle and untoggle grammar checking
+map <leader>gs :setlocal spell!<cr>
 
 " Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-"
-" => Misc
-"
-
-" Quickly open a markdown buffer for scribble
-map <leader>z :e ~/.ultimate-haskell-ide/notes.md<cr>
+map <leader>gn ]s
+map <leader>gp [s
+map <leader>ga zg
+map <leader>g? z=
 
 "
 " => Helper functions
@@ -359,9 +352,6 @@ endif
 
 " When you press gv you Ack after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
-" Open Ack and put the cursor in the right position
-map <leader>g :Ack
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
@@ -622,14 +612,14 @@ let g:dhall_format=1
 let g:yesod_disable_maps = 1
 
 " Wingman mappings
-nnoremap <silent> <leader>wp :<C-U>call CocActionAsync('diagnosticPrevious', 'hint')<CR>
-nnoremap <silent> <leader>wn :<C-U>call <SID>JumpToNextHole()<CR>
+nnoremap <silent> <leader>mp :<C-U>call CocActionAsync('diagnosticPrevious', 'hint')<CR>
+nnoremap <silent> <leader>mn :<C-U>call <SID>JumpToNextHole()<CR>
 
-nnoremap <silent> <leader>wd  :<C-u>set operatorfunc=<SID>WingmanDestruct<CR>g@l
-nnoremap <silent> <leader>wf  :<C-u>set operatorfunc=<SID>WingmanFillHole<CR>g@l
-nnoremap <silent> <leader>wr  :<C-u>set operatorfunc=<SID>WingmanRefine<CR>g@l
-nnoremap <silent> <leader>wc  :<C-u>set operatorfunc=<SID>WingmanUseCtor<CR>g@l
-nnoremap <silent> <leader>wa  :<C-u>set operatorfunc=<SID>WingmanDestructAll<CR>g@l
+nnoremap <silent> <leader>md  :<C-u>set operatorfunc=<SID>WingmanDestruct<CR>g@l
+nnoremap <silent> <leader>mf  :<C-u>set operatorfunc=<SID>WingmanFillHole<CR>g@l
+nnoremap <silent> <leader>mr  :<C-u>set operatorfunc=<SID>WingmanRefine<CR>g@l
+nnoremap <silent> <leader>mc  :<C-u>set operatorfunc=<SID>WingmanUseCtor<CR>g@l
+nnoremap <silent> <leader>ma  :<C-u>set operatorfunc=<SID>WingmanDestructAll<CR>g@l
 
 function! s:JumpToNextHole()
   call CocActionAsync('diagnosticNext', 'hint')
@@ -709,18 +699,16 @@ nnoremap <leader>k :tabnext<cr>
 nnoremap <leader>h :tabfirst<cr>
 nnoremap <leader>l :tablast<cr>
 nnoremap <leader>t :tabnew<cr>
-nnoremap <leader>e :tabnew \| startinsert \| term<cr>
 nnoremap <leader>x :tabclose<cr>
-nnoremap <leader>o :tabonly<cr>
+nnoremap <leader>y :tabonly<cr>
 
 "
-" => Misc shortcuts
-"
-" TODO : better mappings with leader
+" => Buffer shortcuts
 "
 
 nnoremap <leader>q :q<cr>
-nnoremap <c-e> :Ex<cr>
-nnoremap <m-s> :sp<cr>
-nnoremap <m-v> :vsp<cr>
-nnoremap <m-e> :startinsert \| term<cr>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>p :Exp<cr>
+nnoremap <leader>v :new<cr>
+nnoremap <leader>s :vnew<cr>
+nnoremap <leader>e :startinsert \| term<cr>
