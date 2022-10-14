@@ -709,6 +709,6 @@ nnoremap <leader>y :tabonly<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>p :Exp<cr>
-nnoremap <leader>v :new<cr>
-nnoremap <leader>s :vnew<cr>
+nnoremap <leader>s :new<cr>
+nnoremap <leader>v :vnew<cr>
 nnoremap <leader>e :startinsert \| term<cr>
