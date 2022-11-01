@@ -678,7 +678,7 @@ nnoremap <leader>h :tabfirst<cr>
 nnoremap <leader>l :tablast<cr>
 nnoremap <leader>t :tabnew<cr>
 nnoremap <leader>x :tabclose<cr>
-nnoremap <leader>o :tabonly<cr>
+nnoremap <leader>y :tabonly<cr>
 
 "
 " => Buffer shortcuts
@@ -697,11 +697,11 @@ nnoremap <leader>e :startinsert \| term<cr>
 
 set spellfile=~/.ultimate-haskell-ide/tmp/spellfile.add
 " Prev misspelled
-map <M-y> [s
+map <M-u> [s
 " Toggle and untoggle grammar checking
-map <M-u> :setlocal spell!<cr>
+map <M-i> :setlocal spell!<cr>
 " Next misspelled
-map <M-i> ]s
+map <M-o> ]s
 " Mark word as good
 map <M-g> zg
 " Suggest
@@ -718,6 +718,6 @@ nnoremap <leader>// :LanguageToolClear<cr>
 " => Location list
 "
 
-nnoremap <leader>y :lpr<cr>
-nnoremap <leader>u :call ToggleLocationList()<cr>
-nnoremap <leader>i :lne<cr>
+nnoremap <leader>u :lpr<cr>
+nnoremap <leader>i :call ToggleLocationList()<cr>
+nnoremap <leader>o :lne<cr>
