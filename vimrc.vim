@@ -695,6 +695,7 @@ nnoremap <leader>e :startinsert \| term<cr>
 " => Spell checking
 "
 
+set spellfile=~/.ultimate-haskell-ide/tmp/spellfile.add
 " Prev misspelled
 map <M-y> [s
 " Toggle and untoggle grammar checking
