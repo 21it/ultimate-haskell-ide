@@ -171,19 +171,6 @@ vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 "
-" => Spell checking
-"
-
-" Toggle and untoggle grammar checking
-map <leader>gs :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-map <leader>gn ]s
-map <leader>gp [s
-map <leader>ga zg
-map <leader>g? z=
-
-"
 " => Helper functions
 "
 
@@ -405,8 +392,6 @@ syntax on
 set t_Co=256
 exe 'set background=' . get(g:, "vimBackground", "light")
 exe 'colorscheme ' . get(g:, "vimColorScheme", "PaperColor")
-exe 'let g:languagetool_jar=' . get(g:, "languagetool_jar", "$LANGUAGE_TOOL_JAR")
-let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
 set colorcolumn=67
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
@@ -659,13 +644,6 @@ function! s:WingmanUseCtor(type)
 endfunction
 
 "
-" => LanguageTool
-"
-
-"nnoremap <leader>lt :LanguageToolCheck<cr>
-"nnoremap <leader>lc :LanguageToolClear<cr>
-
-"
 " => Resize panes
 "
 
@@ -700,7 +678,7 @@ nnoremap <leader>h :tabfirst<cr>
 nnoremap <leader>l :tablast<cr>
 nnoremap <leader>t :tabnew<cr>
 nnoremap <leader>x :tabclose<cr>
-nnoremap <leader>y :tabonly<cr>
+nnoremap <leader>o :tabonly<cr>
 
 "
 " => Buffer shortcuts
@@ -712,3 +690,33 @@ nnoremap <leader>p :Exp<cr>
 nnoremap <leader>s :new<cr>
 nnoremap <leader>v :vnew<cr>
 nnoremap <leader>e :startinsert \| term<cr>
+
+"
+" => Spell checking
+"
+
+" Prev misspelled
+map <M-y> [s
+" Toggle and untoggle grammar checking
+map <M-u> :setlocal spell!<cr>
+" Next misspelled
+map <M-i> ]s
+" Mark word as good
+map <M-g> zg
+" Suggest
+map <M-s> z=
+
+"
+" => LanguageTool
+"
+let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
+nnoremap <leader>/ :LanguageToolCheck<cr>
+nnoremap <leader>// :LanguageToolClear<cr>
+
+"
+" => Location list
+"
+
+nnoremap <leader>y :lpr<cr>
+nnoremap <leader>u :call ToggleLocationList()<cr>
+nnoremap <leader>i :lne<cr>

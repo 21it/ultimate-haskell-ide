@@ -50,9 +50,10 @@ let ignore-patterns = ''
       configure = {
         customRC = ''
           set runtimepath+=${vi21src}
-          let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipeWrapper}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin:${git}/bin'
+          let $PATH.=':${silver-searcher}/bin:${nodejs}/bin:${less}/bin:${lesspipeWrapper}/bin:${python38Packages.grip}/bin:${xdg_utils}/bin:${git}/bin:${jre8}/bin'
           let g:vimBackground = '${vimBackground}'
           let g:vimColorScheme = '${vimColorScheme}'
+          let g:languagetool_jar='${languagetool}/share/languagetool-commandline.jar'
           source ${vi21src}/vimrc.vim
           try
             source ~/.ultimate-haskell-ide/vimrc.vim
