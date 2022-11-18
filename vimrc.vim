@@ -41,9 +41,6 @@ set ruler
 " Height of the command bar
 set cmdheight=1
 
-" A buffer becomes hidden when it is abandoned
-set hid
-
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -667,6 +664,12 @@ highlight lCursor guifg=NONE guibg=Cyan
 "
 
 tnoremap <esc> <C-\><C-n>
+augroup terminal
+  autocmd!
+  autocmd TermOpen * setlocal nonumber norelativenumber nohidden
+  autocmd TermOpen * startinsert
+  autocmd FocusGained,BufEnter,BufWinEnter,WinEnter term://* startinsert
+augroup END
 
 "
 " => Tabs shortcuts
@@ -689,7 +692,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>p :Exp<cr>
 nnoremap <leader>s :new<cr>
 nnoremap <leader>v :vnew<cr>
-nnoremap <leader>e :startinsert \| term<cr>
+nnoremap <leader>e :term<cr>
 
 "
 " => Spell checking
