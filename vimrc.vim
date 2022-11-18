@@ -668,7 +668,6 @@ augroup terminal
   autocmd!
   autocmd TermOpen * setlocal nonumber norelativenumber nohidden
   autocmd TermOpen * startinsert
-  autocmd FocusGained,BufEnter,BufWinEnter,WinEnter term://* startinsert
 augroup END
 
 "
